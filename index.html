@@ -8,7 +8,9 @@
 <meta property="og:title" content="Stop renting billing software you never touch.">
 <meta property="og:description" content="Triad is the cash-only EHR for Applied Kinesiology. One screen, fire a macro, done. Built at the table by an AK doc. Founding Cohort is open.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://tdander26.github.io/triad-ehr-launch/demo-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tdander26.github.io/triad-ehr-launch/demo-poster.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F766E'/%3E%3Cpath d='M16 7 L25 24 L7 24 Z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +52,12 @@ p{margin:0 0 1rem}
 .hero .sub{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--muted);max-width:54ch;margin:0 auto 2rem}
 .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .microcopy{margin-top:18px;font-size:.92rem;color:var(--muted)}
+
+/* demo */
+.demo{padding:8px 0 44px}
+.video-frame{max-width:940px;margin:0 auto;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#000;line-height:0}
+.video-frame video{display:block;width:100%;height:auto}
+.demo-cap{text-align:center;color:var(--muted);font-size:.88rem;margin:14px 0 0}
 
 /* spine strip */
 .spine{background:var(--ink);color:#fff;padding:30px 0}
@@ -153,6 +161,15 @@ footer a{color:#bfe4df}
     <p class="microcopy">Free pilot. We move your data for you. Month-to-month, no contract, no lock-in.</p>
   </div>
 </header>
+
+<section class="demo" id="demo">
+  <div class="wrap">
+    <div class="video-frame">
+      <video src="demo.mp4" poster="demo-poster.jpg" autoplay muted loop playsinline controls preload="auto" aria-label="Animated walkthrough of the Triad EHR charting cockpit"></video>
+    </div>
+    <p class="demo-cap">A look at the cockpit. Illustrative animation, synthetic data, not a screen recording.</p>
+  </div>
+</section>
 
 <div class="spine">
   <div class="wrap">
