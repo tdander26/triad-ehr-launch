@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triad EHR — The Cash-Only EHR Built for Applied Kinesiology</title>
+<meta name="description" content="The AK EHR that costs less than ChiroTouch and charts a whole visit on one screen. Built by a practicing AK doc. Apply for the Founding Cohort.">
+<meta property="og:title" content="Stop renting billing software you never touch.">
+<meta property="og:description" content="Triad is the cash-only EHR for Applied Kinesiology. One screen, fire a macro, done. Built at the table by an AK doc. Founding Cohort is open.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F766E'/%3E%3Cpath d='M16 7 L25 24 L7 24 Z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0F766E; --teal-dark:#0b524c; --teal-soft:#e7f1ef;
+  --paper:#FAF9F7; --surface:#ffffff; --ink:#1A1D21; --muted:#5b6670;
+  --line:rgba(0,0,0,.09); --red:#DC2626; --amber:#D97706; --blue:#2563EB; --green:#16A34A;
+  --radius:14px; --maxw:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',-apple-system,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none}
+h1,h2,h3{line-height:1.2;margin:0 0 .4em;font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3vw,2.1rem)}
+p{margin:0 0 1rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.btn{display:inline-block;font-weight:600;font-size:1rem;padding:14px 26px;border-radius:11px;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-ghost{background:transparent;color:var(--teal);border-color:rgba(15,118,110,.35)}
+.btn-ghost:hover{background:var(--teal-soft)}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:6px 13px;border-radius:99px;margin-bottom:18px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(250,249,247,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.12rem;color:var(--ink);white-space:nowrap}
+.nav-cta .short{display:none}
+.brand svg{display:block}
+.nav .btn{padding:9px 18px;font-size:.92rem}
+
+/* hero */
+.hero{padding:74px 0 58px;text-align:center}
+.hero h1{font-size:clamp(2.1rem,5.4vw,3.5rem);max-width:14ch;margin:0 auto .5em}
+.hero .sub{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--muted);max-width:54ch;margin:0 auto 2rem}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.microcopy{margin-top:18px;font-size:.92rem;color:var(--muted)}
+
+/* spine strip */
+.spine{background:var(--ink);color:#fff;padding:30px 0}
+.spine .wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.spine .item{display:flex;gap:14px;align-items:flex-start}
+.spine .n{flex:none;width:34px;height:34px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700}
+.spine h3{color:#fff;font-size:1.08rem;margin-bottom:3px}
+.spine p{color:#c5ccd2;margin:0;font-size:.96rem}
+
+section.block{padding:64px 0;border-bottom:1px solid var(--line)}
+section.alt{background:var(--surface)}
+.lead{font-size:1.12rem;color:var(--muted);max-width:60ch}
+.sec-head{max-width:62ch;margin-bottom:36px}
+
+/* capabilities */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+section.alt .card{background:var(--paper)}
+.card h3{font-size:1.16rem}
+.card .proof{font-size:.86rem;color:var(--muted);margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-soft);padding:4px 10px;border-radius:99px;margin-bottom:12px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;counter-reset:s}
+.step{position:relative;padding-left:50px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:1.06rem}
+
+/* offer */
+.offer{background:var(--teal);color:#fff;border-radius:18px;padding:42px}
+.offer h2{color:#fff}
+.offer .cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:24px}
+.offer h4{margin:0 0 10px;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:#bfe4df}
+.offer ul{margin:0;padding-left:20px}
+.offer li{margin:7px 0;color:#eaf5f3}
+.offer .note{margin-top:24px;font-size:.92rem;color:#cfeae6}
+.offer .btn-primary{background:#fff;color:var(--teal-dark);margin-top:26px}
+.offer .btn-primary:hover{background:#eaf5f3}
+
+/* founder */
+.founder{display:grid;grid-template-columns:1fr;gap:8px;max-width:64ch}
+.founder .sig{font-weight:600;color:var(--ink)}
+
+/* trust */
+.trust ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.trust li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:.95rem}
+section.alt .trust li{background:var(--paper)}
+.trust li b{color:var(--teal-dark)}
+.disclaimer{margin-top:22px;font-size:.9rem;color:var(--muted);max-width:66ch}
+
+/* faq */
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 20px;margin-bottom:12px}
+section.alt .faq details{background:var(--paper)}
+.faq summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--teal);font-weight:700;font-size:1.4rem;flex:none}
+.faq details[open] summary::after{content:"\2013"}
+.faq details p{padding:0 0 16px;margin:0;color:var(--muted)}
+
+/* final */
+.final{text-align:center;padding:74px 0}
+.final h2{max-width:20ch;margin:0 auto .5em}
+.final p{max-width:56ch;margin:0 auto 1.6rem;color:var(--muted)}
+
+footer{background:var(--ink);color:#aeb6bd;padding:40px 0;font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer b{color:#fff}
+footer a{color:#bfe4df}
+
+@media (max-width:680px){
+  .spine .wrap{grid-template-columns:1fr}
+  .offer{padding:28px}
+  .offer .cols{grid-template-columns:1fr}
+  section.block{padding:48px 0}
+  .nav-cta .full{display:none}
+  .nav-cta .short{display:inline}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <span class="brand">
+      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0F766E"/><path d="M16 7 L25 24 L7 24 Z" fill="none" stroke="white" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      Triad EHR
+    </span>
+    <a class="btn btn-primary nav-cta" href="#apply"><span class="full">Apply for the Founding Cohort</span><span class="short">Apply</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Built for Applied Kinesiology · Founding Cohort open</span>
+    <h1>Stop renting billing software you never touch.</h1>
+    <p class="sub">Triad is the cash-only EHR built for Applied Kinesiology. It costs less than ChiroTouch because it carries none of the insurance machinery you never open. And it charts your whole visit on one screen. Fire a macro, tap a few findings, done. Built at the table by a practicing AK doc.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#apply">Apply for the Founding Cohort</a>
+      <a class="btn btn-ghost" href="#waitlist">Not ready yet? Join the waitlist</a>
+    </div>
+    <p class="microcopy">Free pilot. We move your data for you. Month-to-month, no contract, no lock-in.</p>
+  </div>
+</header>
+
+<div class="spine">
+  <div class="wrap">
+    <div class="item">
+      <div class="n">1</div>
+      <div><h3>Cash-built, so it costs less</h3><p>No clearinghouse, no claim-scrubber. You stop paying for insurance machinery a cash practice never uses.</p></div>
+    </div>
+    <div class="item">
+      <div class="n">2</div>
+      <div><h3>One screen. Never leave it.</h3><p>The whole visit charted on a single cockpit. Fire a macro, tap a few findings, done. No tab-hopping.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>You're paying insurance prices for software that doesn't speak AK.</h2>
+    </div>
+    <p class="lead">You run a cash practice. You haven't filed an insurance claim in years. But you're still paying $159, $199, even $306 a month for an EHR built around a clearinghouse and a claim-scrubber you never touch.</p>
+    <p class="lead">And the charting is worse. You were trained at ICAK. You think in challenges, muscle tests, valves, organ indicators, cranial faults, offenders, reflexes. But your EHR has never heard of any of it. So you cram every finding into a free-text SOAP box you hate, hopping between tabs, scrolling for fields, while the next patient waits.</p>
+    <p class="lead">You didn't get into AK to fight a keyboard. You got into it for what happens at the table. That's the whole reason Triad exists.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Five things your EHR can't do. Triad was built to do all of them.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">AK-native</span>
+        <h3>Chart AK the way you were trained</h3>
+        <p>Challenges, muscle tests, valves, organ indicators, cranial faults, offenders, reflexes, all captured as structured data on a screen that already speaks AK. Triad generates the narrative SOAP note from what you tapped.</p>
+        <p class="proof">No other EHR on the market structures AK findings this way.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The cockpit</span>
+        <h3>The whole visit on one screen, in about a minute</h3>
+        <p>One non-scrolling interface where you fire a macro, tap findings, drop the supplement plan, and generate the superbill, without ever leaving the screen. One-tap pattern macros set findings across many sections at once.</p>
+        <p class="proof">Our target is a routine visit charted in under a minute. We're filming that on a synthetic-patient demo before we put a hard number on any ad.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Progress</span>
+        <h3>A progress picture your patient can see</h3>
+        <p>Every finding gets a color as it changes across visits, red to yellow to blue to green. Stack them across the case and the whole story shows up as a heat-map. When a patient asks "am I improving?", you turn the iPad around.</p>
+        <p class="proof">This displays the progression of findings you entered. No other AK EHR we've found does this, Jane included.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Labs</span>
+        <h3>Functional-range labs, not just lab cutoffs</h3>
+        <p>Triad tracks labs against functional ranges, demographic-aware for sex, age, menopausal status, and meds, across about 70 biomarkers. Sparklines, a status heat-map, a system radar, all in one place.</p>
+        <p class="proof">Triad organizes and displays the lab data you enter. It does not diagnose or interpret results. That's your call.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Dispensary</span>
+        <h3>Your dispensary income, in the same minute you chart</h3>
+        <p>The supplement plan you build during the visit flows straight to checkout. Inventory decrements, low-stock alerts fire, dose quick-picks are right there. The recommendation at the table becomes the sale at the front desk.</p>
+        <p class="proof">In-office POS and inventory built in. A Fullscript bridge is on the roadmap.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Switching</span>
+        <h3>We move your data for you, free</h3>
+        <p>Send your Jane export or prior-app data and we import it. You keep your full case history, and you own a clean export forever if you ever leave. We carry the switching risk, not you.</p>
+        <p class="proof">Concierge migration included with the Founding Cohort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head"><h2>Switching is the easy part. That's on purpose.</h2></div>
+    <div class="steps">
+      <div class="step"><h3>We move your data for you, free</h3><p>Send your Jane export or prior-app data. We import it. You keep your full case history and don't lift a finger.</p></div>
+      <div class="step"><h3>We build your cockpit around how you practice</h3><p>On a setup call, we turn your most-used patterns into one-tap macros, live. Rename buttons, reorder sections, no code.</p></div>
+      <div class="step"><h3>You chart your first live day with the founder on the line</h3><p>Todd sits in for your first day of real charting. Your staff learns the one screen in an afternoon.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="apply">
+  <div class="wrap">
+    <div class="offer">
+      <h2>The Founding Cohort: 5 to 10 AK practices. Open now.</h2>
+      <p>We're taking a small group of AK practices into Triad as founding design partners. You get a free pilot, full concierge onboarding, and the founder on a weekly call building the tool around how you actually work. In exchange, you give us honest feedback, and if Triad earns it, a testimonial down the road.</p>
+      <div class="cols">
+        <div>
+          <h4>What you get</h4>
+          <ul>
+            <li>A free pilot on your real practice</li>
+            <li>Free concierge migration, we move your data</li>
+            <li>Custom macros built around your workflow, live</li>
+            <li>The founder on a weekly call</li>
+            <li>A founding price locked for life when you convert</li>
+            <li>Month-to-month. Clean export anytime. No lock-in.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>What we ask</h4>
+          <ul>
+            <li>Use the cockpit daily on real visits</li>
+            <li>A short weekly feedback call during the pilot</li>
+            <li>Honest input, the good and the garbage</li>
+            <li>If we earn it: a testimonial and a case study later</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Standard pricing is targeted around $129/mo per provider, below ChiroTouch ($159+), Cerbo ($306), and Power2Practice ($199+). Founding Cohort members lock in lower, for life. Exact numbers get finalized honestly with our first cohort docs.</p>
+      <a class="btn btn-primary" href="mailto:doc@drtoddanderson.com?subject=Founding%20Cohort%20application&body=Name%3A%0APractice%3A%0ACity%2FState%3A%0ACash-only%20practice%3F%3A%0ADo%20you%20practice%20AK%3F%3A%0APatients%20per%20day%3A%0ACurrent%20EHR%3A%0AYour%20%231%20charting%20frustration%3A%0ABest%20way%20and%20time%20to%20reach%20you%3A">Apply for the Founding Cohort</a>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head"><h2>I built the EHR I always wanted. So I could stop fighting mine.</h2></div>
+    <div class="founder">
+      <p>Hi, I'm Dr. Todd Anderson. I practice Applied Kinesiology at Momentum Health &amp; Wellness in Elk River, Minnesota. I'm in the room, at the table, every week, just like you.</p>
+      <p>For years I had the same problem you do. I was paying a fortune for an EHR built for an insurance practice I don't run. None of it spoke AK. So I jammed every muscle test and valve and offender into a free-text box, tab by tab, while my patient waited.</p>
+      <p>So I built what I wanted instead. Triad is the EHR I use in my own practice every single day. One screen. Fire a macro, tap a few findings, done. It charts AK the way ICAK trained me, and it costs a fraction of what I was paying before, because it's built for cash.</p>
+      <p>It's real. It's shipped. It runs my practice right now, on Google Cloud, under a signed HIPAA BAA. This isn't a pitch deck. It's the tool I chart on between patients.</p>
+      <p>If you practice the way I do, I think you're going to love this. Let me show you.</p>
+      <p class="sig">— Todd</p>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap trust">
+    <div class="sec-head"><h2>Built on HIPAA-eligible infrastructure, under BAA. In production today.</h2></div>
+    <ul>
+      <li><b>Hosted on Google Cloud under a signed BAA.</b> Your practice data lives on enterprise-grade infrastructure covered by a HIPAA Business Associate Agreement.</li>
+      <li><b>We sign a BAA with your practice.</b> Before you go live, we execute a Business Associate Agreement with you.</li>
+      <li><b>Voice dictation under a signed BAA.</b> Dictation goes through AssemblyAI in medical mode, covered by a BAA.</li>
+      <li><b>AI under the Google Cloud BAA.</b> The scribe drafts a note for your review. It is never auto-written and never auto-signed.</li>
+      <li><b>You own your data.</b> Clean export anytime. Month-to-month. No proprietary lock-in.</li>
+    </ul>
+    <p class="disclaimer">We don't say "HIPAA certified," because there's no such thing. We don't claim FDA clearance, and Triad doesn't diagnose, treat, or interpret your labs, it organizes and displays the data you enter. We sell speed, cost, and workflow, the things we can actually demonstrate.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap faq">
+    <div class="sec-head"><h2>Questions, answered straight.</h2></div>
+    <details><summary>Is this only for Applied Kinesiology practices?</summary><p>Right now, yes, and on purpose. Triad is built for how AK docs chart, structured findings, valves, challenges, cranial faults, the whole vocabulary no other EHR has. Adjacent muscle-testing worlds (NRT, NET, ART) are a natural fit later, but AK is where we're starting because it's where nobody else has built.</p></details>
+    <details><summary>What about migrating my data? I can't lose my patient history.</summary><p>We move it for you, free. Concierge migration imports your Jane export or prior-app data, and you keep your full case history. You own a clean export forever, so leaving is never a trap either.</p></details>
+    <details><summary>How much does it cost?</summary><p>Standard pricing is targeted around $129/mo per provider, a single flat price, month-to-month. That's below ChiroTouch ($159+), Cerbo ($306), and Power2Practice ($199+). Founding Cohort members lock in a lower founding rate for life. Final numbers get set honestly with our first cohort.</p></details>
+    <details><summary>It's cheaper than what? Jane is only $79.</summary><p>Fair. We don't claim cheapest, we claim right-priced. Jane is cheaper because it does less, you'll still force every muscle test into free-text SOAP. Against the EHRs AK docs actually overpay for, ChiroTouch, Cerbo, Power2Practice, Triad is a fraction of the cost, and every dollar buys AK-native structure Jane doesn't do.</p></details>
+    <details><summary>Is it actually HIPAA secure?</summary><p>We built for it from day one. Triad runs on Google Cloud under a signed BAA. Voice dictation (AssemblyAI) and AI (Claude on Vertex) are both covered under BAA. We sign a Business Associate Agreement with your practice before you go live. We never say "HIPAA certified," because no such certification exists.</p></details>
+    <details><summary>Will learning new software wreck my schedule?</summary><p>The single screen is the training. One cockpit, fire a macro, done, your staff picks it up in an afternoon. And the founder builds your most-used patterns into macros live, so you're charting your own workflow from day one.</p></details>
+    <details><summary>You're a solo founder. Will you actually be around?</summary><p>Real question, real answer. Triad is shipped and running a live practice every day on Google Cloud under a BAA, not a prototype betting on your data. A second practice is onboarding now. The Founding Cohort de-risks it: free pilot, founder on weekly calls, clean export anytime, month-to-month.</p></details>
+    <details><summary>I already have an EHR. Why switch?</summary><p>Then you already know the pain: tab-hopping, free-text SOAP, and a bill loaded with billing features you never touch. Triad is the only one built for how an AK doc actually works the table. Watch a real visit charted in about a minute, then decide. If it's not obviously better for how you practice, don't switch.</p></details>
+  </div>
+</section>
+
+<section class="final" id="waitlist">
+  <div class="wrap">
+    <h2>A few AK practices. The founder on the phone. Open now.</h2>
+    <p>The Founding Cohort is small on purpose. Free pilot, your data moved for you, the founder building Triad around how you actually work. If you're tired of paying insurance prices to fight a keyboard that's never heard of a muscle test, this is your seat.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:doc@drtoddanderson.com?subject=Founding%20Cohort%20application&body=Name%3A%0APractice%3A%0ACity%2FState%3A%0ACash-only%20practice%3F%3A%0ADo%20you%20practice%20AK%3F%3A%0APatients%20per%20day%3A%0ACurrent%20EHR%3A%0AYour%20%231%20charting%20frustration%3A">Apply for the Founding Cohort</a>
+      <a class="btn btn-ghost" href="mailto:doc@drtoddanderson.com?subject=Triad%20EHR%20waitlist&body=Add%20me%20to%20the%20waitlist.%20I%20practice%20AK%3A%20yes%2Fno">Join the waitlist</a>
+    </div>
+    <p class="microcopy">I built this for docs like us. Let me show you. — Todd</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>Triad EHR</b><br>
+      The cash-only EHR for Applied Kinesiology.
+    </div>
+    <div>
+      Momentum Health &amp; Wellness<br>
+      Elk River, Minnesota<br>
+      <a href="mailto:doc@drtoddanderson.com">doc@drtoddanderson.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
