@@ -11,20 +11,21 @@
 <meta property="og:image" content="https://tdander26.github.io/triad-ehr-launch/demo-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tdander26.github.io/triad-ehr-launch/demo-poster.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F766E'/%3E%3Cpath d='M16 7 L25 24 L7 24 Z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E7C72'/%3E%3Cpath d='M16 7 L25 24 L7 24 Z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --teal:#0F766E; --teal-dark:#0b524c; --teal-soft:#e7f1ef;
-  --paper:#FAF9F7; --surface:#ffffff; --ink:#1A1D21; --muted:#5b6670;
-  --line:rgba(0,0,0,.09); --red:#DC2626; --amber:#D97706; --blue:#2563EB; --green:#16A34A;
+  --teal:#0E7C72; --teal-dark:#0A5F58; --teal-soft:#e7f1f0;
+  --paper:#F7F7F4; --surface:#ffffff; --ink:#1C1F24; --muted:#6C737D;
+  --line:#E7E5DF; --red:#B3473F; --amber:#A8742A; --blue:#3D6FA5; --green:#3E7A4E;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   --radius:14px; --maxw:1080px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Inter',-apple-system,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Public Sans',-apple-system,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--teal);text-decoration:none}
 h1,h2,h3{line-height:1.2;margin:0 0 .4em;font-weight:700;letter-spacing:-.01em}
 h2{font-size:clamp(1.5rem,3vw,2.1rem)}
@@ -34,12 +35,13 @@ p{margin:0 0 1rem}
 .btn:hover{transform:translateY(-1px)}
 .btn-primary{background:var(--teal);color:#fff}
 .btn-primary:hover{background:var(--teal-dark)}
-.btn-ghost{background:transparent;color:var(--teal);border-color:rgba(15,118,110,.35)}
+.btn-ghost{background:transparent;color:var(--teal);border-color:rgba(14,124,114,.35)}
 .btn-ghost:hover{background:var(--teal-soft)}
-.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:6px 13px;border-radius:99px;margin-bottom:18px}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:6px 13px;border-radius:99px;margin-bottom:18px}
+.kicker{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
 
 /* nav */
-.nav{position:sticky;top:0;z-index:20;background:rgba(250,249,247,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(247,247,244,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.12rem;color:var(--ink);white-space:nowrap}
 .nav-cta .short{display:none}
@@ -58,6 +60,17 @@ p{margin:0 0 1rem}
 .video-frame{max-width:940px;margin:0 auto;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#000;line-height:0}
 .video-frame video{display:block;width:100%;height:auto}
 .demo-cap{text-align:center;color:var(--muted);font-size:.88rem;margin:14px 0 0}
+
+/* real-screen showcase */
+.showcase{padding:60px 0;border-bottom:1px solid var(--line);text-align:center}
+.showcase .lead{margin:0 auto 30px}
+.shot{max-width:960px;margin:0 auto;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#F7F7F4}
+.shot img{display:block;width:100%;height:auto}
+.shot-row{max-width:960px;margin:20px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.shot-row figure{margin:0}
+.shot-row img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#F7F7F4}
+.shot-row figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+@media (max-width:680px){.shot-row{grid-template-columns:1fr}}
 
 /* spine strip */
 .spine{background:var(--ink);color:#fff;padding:30px 0}
@@ -78,7 +91,7 @@ section.alt{background:var(--surface)}
 section.alt .card{background:var(--paper)}
 .card h3{font-size:1.16rem}
 .card .proof{font-size:.86rem;color:var(--muted);margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line)}
-.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-soft);padding:4px 10px;border-radius:99px;margin-bottom:12px}
+.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-soft);padding:4px 10px;border-radius:6px;margin-bottom:12px}
 
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;counter-reset:s}
@@ -142,7 +155,7 @@ footer a{color:#bfe4df}
 <nav class="nav">
   <div class="wrap">
     <span class="brand">
-      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0F766E"/><path d="M16 7 L25 24 L7 24 Z" fill="none" stroke="white" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0E7C72"/><path d="M16 7 L25 24 L7 24 Z" fill="none" stroke="white" stroke-width="2.4" stroke-linejoin="round"/></svg>
       Triad EHR
     </span>
     <a class="btn btn-primary nav-cta" href="#apply"><span class="full">Apply for the Founding Cohort</span><span class="short">Apply</span></a>
@@ -183,6 +196,17 @@ footer a{color:#bfe4df}
     </div>
   </div>
 </div>
+
+<section class="showcase" id="cockpit">
+  <div class="wrap">
+    <p class="kicker">The actual cockpit</p>
+    <h2>One screen. The whole visit.</h2>
+    <p class="lead">This is Triad charting a live visit. Subjective with dictation on the left, the macro objective board in the middle, supplements and sign-off on the right. No tab-hopping, no scroll-hunting for a field.</p>
+    <div class="shot"><img src="cockpit-1.png" alt="Triad EHR cockpit: subjective dictation and symptom progress on the left, the macro objective board with lit muscle findings in the middle, all on one screen" width="924" height="484" loading="lazy"></div>
+    <p class="demo-cap">And on the right: the supplement plan with day-counters, signed in one tap.</p>
+    <div class="shot"><img src="cockpit-2.png" alt="Triad EHR right column: supplement plan with day-counters and dosing history, plus the Sign action" width="924" height="484" loading="lazy"></div>
+  </div>
+</section>
 
 <section class="block">
   <div class="wrap">
