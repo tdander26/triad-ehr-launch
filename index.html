@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Triad EHR — The Cash-Only EHR Built for Applied Kinesiology</title>
-<meta name="description" content="Triad is the cash-only EHR built for Applied Kinesiology. Chart your whole visit on one screen — fire a macro, tap a few findings, done. Built at the table by a practicing AK doc. Founding Cohort open now.">
+<meta name="description" content="Triad is the cash-only EHR built for Applied Kinesiology. Chart your whole visit on one screen, and let stat tracking show you what's working, symptom by symptom — something no other EHR does. Built at the table by a practicing AK doc. Founding Cohort open now.">
 <link rel="canonical" href="https://tdander26.github.io/triad-ehr-launch/">
 
 <!-- Open Graph / Twitter -->
@@ -374,6 +374,62 @@ h1,h2,h3{text-wrap:balance;margin:0;}
 .gauge .dotm{position:absolute;top:-3.5px;width:14px;height:14px;border-radius:50%;background:#fff;border:2.5px solid var(--ink);transform:translateX(-50%);}
 .heat{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-top:6px;}
 .heat span{height:13px;border-radius:3px;}
+/* Marquee feature — the differentiator card (stat tracking) */
+.feature-hero{
+  background:
+    radial-gradient(760px 400px at 88% -12%, rgba(18,129,122,.42), transparent 62%),
+    radial-gradient(rgba(255,255,255,.04) 1px, transparent 1.4px),
+    var(--pine);
+  background-size:auto,22px 22px,auto;
+  border:none;color:var(--pine-ink);
+}
+.feature-hero h3{color:#fff;}
+.feature-hero .f-body{color:var(--pine-soft);}
+.feature-hero .f-body strong{color:var(--pine-ink);font-weight:600;}
+.feature-hero .f-kicker{color:#8FD6CB;}
+.feature-hero .f-kicker .idx{background:#5BC2B4;color:var(--pine);}
+.nobody{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;
+  color:#8FD6CB;border:1px solid rgba(143,214,203,.34);background:rgba(18,129,122,.18);
+  padding:6px 12px;border-radius:999px;margin:0 0 16px;
+}
+.feature-hero .proof{background:rgba(255,255,255,.06);border-color:var(--pine-line);}
+.feature-hero .proof .tag{color:#8FD6CB;}
+.feature-hero .proof p{color:var(--pine-soft);}
+.stat-panel{
+  background:rgba(255,255,255,.06);border:1px solid var(--pine-line);
+  border-radius:var(--r-md);padding:18px;
+}
+.stat-panel .sp-head{
+  display:flex;justify-content:space-between;gap:10px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;
+  color:#8FA79F;margin:0 0 14px;
+}
+.sp-row{padding:11px 0;border-top:1px solid rgba(255,255,255,.09);}
+.sp-row:first-of-type{border-top:none;padding-top:0;}
+.sp-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;}
+.sp-name{font-size:14px;font-weight:600;color:var(--pine-ink);}
+.sp-flag{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:0.04em;padding:3px 9px;border-radius:6px;}
+.sp-flag.good{color:#7BE0B8;background:rgba(46,139,103,.28);}
+.sp-flag.watch{color:#9CC1F0;background:rgba(64,115,172,.3);}
+.sp-why{font-size:12.5px;color:var(--pine-soft);}
+.sp-why b{color:var(--pine-ink);font-weight:600;}
+.sp-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:7px;}
+.sp-bars span{height:6px;border-radius:3px;}
+.sp-denoms{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);}
+.sp-denoms .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.sp-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--pine-ink);
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);
+  padding:6px 11px;border-radius:999px;
+}
+.sp-chip::before{content:"";width:7px;height:7px;border-radius:50%;background:#5BC2B4;flex-shrink:0;}
+.stat-panel .sp-note{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.06em;color:#8FA79F;margin:14px 0 0;}
+.legend-item.wide{grid-column:1/-1;}
+.legend-item.wide a{color:var(--teal);font-weight:600;text-decoration:none;}
+.legend-item.wide a:hover{text-decoration:underline;}
 @media (max-width:880px){
   .feature{grid-template-columns:1fr;}
   .feature.flip .f-text{order:0;}
@@ -671,6 +727,7 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
             <span class="pin" aria-hidden="true" style="left:42%;top:47.3%;"  data-pin="4" title="Mark findings L/R in one tap">4</span>
             <span class="pin" aria-hidden="true" style="left:39.4%;top:82.6%;" data-pin="5" title="Findings file themselves">5</span>
             <span class="pin" aria-hidden="true" style="left:89.1%;top:51.7%;" data-pin="6" title="The plan rides alongside — then Sign">6</span>
+            <span class="pin" aria-hidden="true" style="left:89.4%;top:4.8%;" data-pin="7" title="Progress — the stat tracking, one tap away">7</span>
           </div>
         </div>
       </div>
@@ -685,6 +742,7 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
       <div class="legend-item" data-pin="4"><span class="n">4</span><div><h3>Findings in one tap, L/R</h3><p>Psoas — R. TFL — L. Glut medius — L. Structured AK findings, not free text. Challenges, organs, TMJ, cranial faults — all first-class.</p></div></div>
       <div class="legend-item" data-pin="5"><span class="n">5</span><div><h3>The note files itself</h3><p>"Psoas — R → Quadriceps R" drops into the summary the moment you tap it. The narrative SOAP note generates from what you charted.</p></div></div>
       <div class="legend-item" data-pin="6"><span class="n">6</span><div><h3>The plan rides alongside</h3><p>Supplements with day counters and dose history, right on the screen. Adjust, finish, discontinue — then <em>Sign</em>. Done.</p></div></div>
+      <div class="legend-item wide" data-pin="7"><span class="n">7</span><div><h3>One tap to Progress — the stat tracking</h3><p>That <em>Progress</em> button in the top bar opens the case's stats: what's working, what isn't, and the common denominators between symptoms. No other EHR does this. <a href="#what-works">See how it works ↓</a></p></div></div>
     </div>
   </section>
 
@@ -719,7 +777,7 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
   <section id="features" class="section">
     <div class="features-head rv">
       <p class="eyebrow">What it does</p>
-      <h2 class="display h2">Five things your EHR can't do. Triad was built to do all of them.</h2>
+      <h2 class="display h2">Your EHR can't do any of this. Triad was built to do all of it.</h2>
     </div>
 
     <div class="feature-stack">
@@ -785,10 +843,50 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
         </div>
       </article>
 
-      <!-- 4 · Note + findings -->
+      <!-- 4 · Stat tracking — the differentiator -->
+      <article id="what-works" class="feature feature-hero rv">
+        <div class="f-text">
+          <p class="nobody">◆ NO OTHER EHR DOES THIS</p>
+          <p class="f-kicker"><span class="idx">4</span> Stat tracking</p>
+          <h3>It tells you what's working — and what isn't.</h3>
+          <p class="f-body">Every treatment you chart is tracked against every symptom it touches. Tap <strong>Progress</strong> — the button that lives in the cockpit's top bar — and Triad shows you, symptom by symptom, which protocols actually moved the needle and which didn't. Then it goes further: it finds the <strong>common denominators</strong> between them, the interventions that keep showing up wherever the case is improving. You stop guessing what worked, because your own charting answers it. No other EHR can do this — because no other EHR captures AK findings and treatments as structured data in the first place.</p>
+          <div class="proof"><span class="tag">PROOF</span><p>This analyzes the visits you charted in Triad — treatments, findings, symptom trends — and surfaces patterns in your own documentation. It doesn't diagnose or recommend treatment. Your clinical judgment stays yours.</p></div>
+        </div>
+        <div class="f-visual">
+          <div class="stat-panel">
+            <p class="sp-head"><span>Progress · what's working</span><span>Illustrative</span></p>
+            <div class="sp-row">
+              <div class="sp-top"><span class="sp-name">Bloating after meals</span><span class="sp-flag good">IMPROVING</span></div>
+              <p class="sp-why">moved after <b>ICV protocol</b> + <b>Okra Pepsin E3</b></p>
+              <div class="sp-bars" aria-hidden="true"><span style="background:var(--red);"></span><span style="background:var(--amber);"></span><span style="background:var(--amber);"></span><span style="background:var(--green);"></span></div>
+            </div>
+            <div class="sp-row">
+              <div class="sp-top"><span class="sp-name">Afternoon fatigue</span><span class="sp-flag watch">RESPONDING</span></div>
+              <p class="sp-why">turned after <b>Drenamin ↑ 2× daily</b> · May 28</p>
+              <div class="sp-bars" aria-hidden="true"><span style="background:var(--red);"></span><span style="background:var(--red);"></span><span style="background:var(--amber);"></span><span style="background:var(--blue);"></span></div>
+            </div>
+            <div class="sp-row">
+              <div class="sp-top"><span class="sp-name">Neck tension</span><span class="sp-flag good">MUCH IMPROVED</span></div>
+              <p class="sp-why">moved after <b>TFL — BIL</b> + vagal work</p>
+              <div class="sp-bars" aria-hidden="true"><span style="background:var(--amber);"></span><span style="background:var(--blue);"></span><span style="background:var(--green);"></span><span style="background:var(--green);"></span></div>
+            </div>
+            <div class="sp-denoms">
+              <p class="sp-head" style="margin:0;"><span>Common denominators · across symptoms</span></p>
+              <div class="chips">
+                <span class="sp-chip">ICV protocol → 2 symptoms improving</span>
+                <span class="sp-chip">Adrenal support → energy ↑</span>
+                <span class="sp-chip">Vagal work → gut + neck</span>
+              </div>
+            </div>
+            <p class="sp-note">ILLUSTRATIVE RENDERING OF THE PROGRESS VIEW · SYNTHETIC CASE · NOT A CLINICAL OUTCOME MEASURE</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 · Note + findings -->
       <article class="feature flip rv">
         <div class="f-text">
-          <p class="f-kicker"><span class="idx">4</span> The note</p>
+          <p class="f-kicker"><span class="idx">5</span> The note</p>
           <h3>Findings file themselves. The note is done when you are.</h3>
           <p class="f-body">Tap "Psoas — R," link it to Quadriceps R, and it's already in the summary — typed for you, structured, ready to reopen with one tap. The narrative SOAP note and the superbill generate from what you charted. You review, you sign, you're with the next patient.</p>
           <div class="proof"><span class="tag">PROOF</span><p>The AI-drafted narrative is generated from your structured findings and always reviewed by you before signing. Never auto-signed.</p></div>
@@ -802,10 +900,10 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
         </div>
       </article>
 
-      <!-- 5 · Dispensary -->
+      <!-- 6 · Dispensary -->
       <article class="feature rv">
         <div class="f-text">
-          <p class="f-kicker"><span class="idx">5</span> Dispensary</p>
+          <p class="f-kicker"><span class="idx">6</span> Dispensary</p>
           <h3>Your dispensary income, captured in the same minute you chart</h3>
           <p class="f-body">The supplement plan lives on the visit screen with day counters and full dose history — started, increased, patient-reported response. The recommendation you make at the table becomes the sale at the front desk: inventory decrements, low-stock alerts fire, dose quick-picks are right there (about 316 products supported). Your dispensary is a profit center, so Triad treats it like one.</p>
           <div class="proof"><span class="tag">PROOF</span><p>Fullscript bridge is on the roadmap, not built yet. Today's dispensary is Triad's own in-office POS and inventory.</p></div>
@@ -819,10 +917,10 @@ fieldset.f-set legend{font-size:13.5px;font-weight:600;color:var(--ink);padding:
         </div>
       </article>
 
-      <!-- 6 · Labs -->
+      <!-- 7 · Labs -->
       <article class="feature flip rv">
         <div class="f-text">
-          <p class="f-kicker"><span class="idx">6</span> Labs</p>
+          <p class="f-kicker"><span class="idx">7</span> Labs</p>
           <h3>Functional-range labs, not just lab cutoffs</h3>
           <p class="f-body">Triad tracks labs against functional ranges — demographic-aware for sex, age, menopausal status, and meds — across about 70 biomarkers. Sparklines for trend, a status heat-map, a system radar, correlations. You see a value flagged against the functional target you actually care about, not just the lab's "normal."</p>
           <div class="proof"><span class="tag">PROOF</span><p>Triad organizes and displays the lab data you enter. It does not diagnose, interpret results, or make clinical decisions. That's your call, as it should be.</p></div>
