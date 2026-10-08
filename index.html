@@ -1012,6 +1012,15 @@
             </label>
           </div>
           <fieldset>
+            <legend>Do you use AI dictation in your current EHR setup? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="aidict" value="Yes">Yes</label>
+              <label class="choice"><input type="radio" name="aidict" value="No">No</label>
+              <label class="choice"><input type="radio" name="aidict" value="Not sure">Not sure</label>
+            </div>
+            <span class="err" data-err="aidict" aria-live="polite"></span>
+          </fieldset>
+          <fieldset>
             <legend>Are you a cash-based practice? <span class="req" aria-hidden="true">*</span></legend>
             <div class="choices">
               <label class="choice"><input type="radio" name="cash" value="Yes, 100% cash">Yes, 100% cash</label>
@@ -1283,6 +1292,7 @@
     if (!gv('location')) errors.location = 'City / State is required.';
     if (!gv('ehr')) errors.ehr = 'Tell us what you use now (paper counts).';
     if (!gv('volume')) errors.volume = 'Choose a range.';
+    if (!gv('aidict')) errors.aidict = 'Pick one.';
     if (!gv('cash')) errors.cash = 'Pick one.';
     if (!gv('ptype')) errors.ptype = 'Pick one.';
     var methods = fd.getAll('method').join(', ');
@@ -1303,6 +1313,7 @@
       'City / State: ' + gv('location'),
       'Current EHR: ' + gv('ehr'),
       'Patients per day: ' + gv('volume'),
+      'Uses AI dictation now: ' + gv('aidict'),
       'Cash-based practice: ' + gv('cash'),
       'Practice type: ' + gv('ptype') + (gv('ptypeOther') ? ' (' + gv('ptypeOther') + ')' : ''),
       'How they practice: ' + methods,
