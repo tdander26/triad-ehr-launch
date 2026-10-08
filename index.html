@@ -630,7 +630,7 @@
       <div class="bento">
         <article class="tile s4 feature-tile reveal">
           <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg></span></div>
-          <h3>AK mode: a macro board that speaks AK.</h3>
+          <h3>Technique mode: a macro board that speaks your technique.</h3>
           <p>Challenges, muscle tests, valves, organ indicators, cranial faults and reflexes. One tap each, saved as structured findings. Not an AK practice? Your own macros work the same way.</p>
           <div class="viz" aria-hidden="true">
             <div class="board">
@@ -820,7 +820,7 @@
           <p class="price">$79<small>/mo per provider</small></p>
           <p class="for">For the doc who taps instead of talks.</p>
           <ul class="incl">
-            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>The full charting cockpit, macros and AK mode</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>The full charting cockpit, macros and technique mode</li>
             <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Scheduling, cash billing and superbills</li>
             <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Dispensary, checkout and functional-range labs</li>
             <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Intake forms and patient email</li>
@@ -1012,6 +1012,15 @@
             </label>
           </div>
           <fieldset>
+            <legend>Do you use AI dictation in your current EHR setup? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="aidict" value="Yes">Yes</label>
+              <label class="choice"><input type="radio" name="aidict" value="No">No</label>
+              <label class="choice"><input type="radio" name="aidict" value="Not sure">Not sure</label>
+            </div>
+            <span class="err" data-err="aidict" aria-live="polite"></span>
+          </fieldset>
+          <fieldset>
             <legend>Are you a cash-based practice? <span class="req" aria-hidden="true">*</span></legend>
             <div class="choices">
               <label class="choice"><input type="radio" name="cash" value="Yes, 100% cash">Yes, 100% cash</label>
@@ -1034,13 +1043,16 @@
             </label>
           </fieldset>
           <fieldset>
-            <legend>Do you use Applied Kinesiology or muscle testing? <span class="req" aria-hidden="true">*</span></legend>
+            <legend>How do you practice? <span class="req" aria-hidden="true">*</span> <span class="opt">check all that apply</span></legend>
             <div class="choices">
-              <label class="choice"><input type="radio" name="ak" value="Yes, ICAK-trained">Yes, ICAK-trained</label>
-              <label class="choice"><input type="radio" name="ak" value="Yes, other AK/muscle-testing training">Yes, other AK or muscle-testing training</label>
-              <label class="choice"><input type="radio" name="ak" value="No">No</label>
+              <label class="choice"><input type="checkbox" name="method" value="Muscle testing">Muscle testing</label>
+              <label class="choice"><input type="checkbox" name="method" value="SHC">SHC</label>
+              <label class="choice"><input type="checkbox" name="method" value="FM">FM</label>
+              <label class="choice"><input type="checkbox" name="method" value="Lebowitz">Lebowitz</label>
+              <label class="choice"><input type="checkbox" name="method" value="NRT">NRT</label>
+              <label class="choice"><input type="checkbox" name="method" value="Straight Chiropractic Adjusting">Straight Chiropractic Adjusting</label>
             </div>
-            <span class="err" data-err="ak" aria-live="polite"></span>
+            <span class="err" data-err="method" aria-live="polite"></span>
           </fieldset>
           <label class="lbl"><span>Your #1 frustration with how you chart today <span class="opt">optional</span></span>
             <textarea class="field" name="frustration" rows="3" placeholder="The thing that makes you want to throw the keyboard…"></textarea>
@@ -1280,9 +1292,11 @@
     if (!gv('location')) errors.location = 'City / State is required.';
     if (!gv('ehr')) errors.ehr = 'Tell us what you use now (paper counts).';
     if (!gv('volume')) errors.volume = 'Choose a range.';
+    if (!gv('aidict')) errors.aidict = 'Pick one.';
     if (!gv('cash')) errors.cash = 'Pick one.';
     if (!gv('ptype')) errors.ptype = 'Pick one.';
-    if (!gv('ak')) errors.ak = 'Pick one.';
+    var methods = fd.getAll('method').join(', ');
+    if (!methods) errors.method = 'Pick at least one.';
     if (!fd.get('consent')) errors.consent = 'Please check the box so we can reach out.';
     var keys = Object.keys(errors);
     if (keys.length){
@@ -1299,9 +1313,10 @@
       'City / State: ' + gv('location'),
       'Current EHR: ' + gv('ehr'),
       'Patients per day: ' + gv('volume'),
+      'Uses AI dictation now: ' + gv('aidict'),
       'Cash-based practice: ' + gv('cash'),
       'Practice type: ' + gv('ptype') + (gv('ptypeOther') ? ' (' + gv('ptypeOther') + ')' : ''),
-      'Uses AK / muscle testing: ' + gv('ak'),
+      'How they practice: ' + methods,
       '#1 charting frustration: ' + (gv('frustration') || '(not provided)'),
       'Consent to contact: Yes'
     ];
