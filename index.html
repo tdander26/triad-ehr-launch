@@ -1034,13 +1034,16 @@
             </label>
           </fieldset>
           <fieldset>
-            <legend>Do you use Applied Kinesiology or muscle testing? <span class="req" aria-hidden="true">*</span></legend>
+            <legend>How do you practice? <span class="req" aria-hidden="true">*</span> <span class="opt">check all that apply</span></legend>
             <div class="choices">
-              <label class="choice"><input type="radio" name="ak" value="Yes, ICAK-trained">Yes, ICAK-trained</label>
-              <label class="choice"><input type="radio" name="ak" value="Yes, other AK/muscle-testing training">Yes, other AK or muscle-testing training</label>
-              <label class="choice"><input type="radio" name="ak" value="No">No</label>
+              <label class="choice"><input type="checkbox" name="method" value="Muscle testing">Muscle testing</label>
+              <label class="choice"><input type="checkbox" name="method" value="SHC">SHC</label>
+              <label class="choice"><input type="checkbox" name="method" value="FM">FM</label>
+              <label class="choice"><input type="checkbox" name="method" value="Lebowitz">Lebowitz</label>
+              <label class="choice"><input type="checkbox" name="method" value="NRT">NRT</label>
+              <label class="choice"><input type="checkbox" name="method" value="Straight Chiropractic Adjusting">Straight Chiropractic Adjusting</label>
             </div>
-            <span class="err" data-err="ak" aria-live="polite"></span>
+            <span class="err" data-err="method" aria-live="polite"></span>
           </fieldset>
           <label class="lbl"><span>Your #1 frustration with how you chart today <span class="opt">optional</span></span>
             <textarea class="field" name="frustration" rows="3" placeholder="The thing that makes you want to throw the keyboard…"></textarea>
@@ -1282,7 +1285,8 @@
     if (!gv('volume')) errors.volume = 'Choose a range.';
     if (!gv('cash')) errors.cash = 'Pick one.';
     if (!gv('ptype')) errors.ptype = 'Pick one.';
-    if (!gv('ak')) errors.ak = 'Pick one.';
+    var methods = fd.getAll('method').join(', ');
+    if (!methods) errors.method = 'Pick at least one.';
     if (!fd.get('consent')) errors.consent = 'Please check the box so we can reach out.';
     var keys = Object.keys(errors);
     if (keys.length){
@@ -1301,7 +1305,7 @@
       'Patients per day: ' + gv('volume'),
       'Cash-based practice: ' + gv('cash'),
       'Practice type: ' + gv('ptype') + (gv('ptypeOther') ? ' (' + gv('ptypeOther') + ')' : ''),
-      'Uses AK / muscle testing: ' + gv('ak'),
+      'How they practice: ' + methods,
       '#1 charting frustration: ' + (gv('frustration') || '(not provided)'),
       'Consent to contact: Yes'
     ];
