@@ -3,655 +3,1287 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Triad EHR — The Cash-Only EHR Built for Applied Kinesiology</title>
-<meta name="description" content="Triad is the cash-only EHR built for Applied Kinesiology. Chart your whole visit on one screen — fire a macro, tap a few findings, done. Built at the table by a practicing AK doc. Founding Cohort open now.">
+<title>Triad EHR · The EHR for functional and integrative cash practices</title>
+<meta name="description" content="Triad is the EHR for cash-based functional and integrative practices, and it speaks Applied Kinesiology natively. Functional-range labs with trends, supplement plans to checkout, one-tap macros, dictation and sealed signed notes on one screen. Made by Triad EHR LLC, Elk River, Minnesota.">
+<link rel="canonical" href="https://triadehr.com/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f3f2ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141816" media="(prefers-color-scheme: dark)">
 
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="One screen. One hand on the patient. The whole visit, charted.">
-<meta property="og:description" content="The cash-only EHR built for Applied Kinesiology. Less than ChiroTouch, none of the insurance machinery, and your whole visit charted on one screen. Founding Cohort open now.">
+<meta property="og:url" content="https://triadehr.com/">
+<meta property="og:title" content="Triad EHR: the EHR that finally fits root-cause care.">
+<meta property="og:description" content="The EHR for cash-based functional and integrative practices, with Applied Kinesiology built in. Functional-range labs, supplement plans to checkout and structured notes on one screen. In daily clinical use today.">
 <meta property="og:site_name" content="Triad EHR">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="One screen. One hand on the patient. The whole visit, charted.">
-<meta name="twitter:description" content="The cash-only EHR built for Applied Kinesiology. Less than ChiroTouch, none of the insurance machinery, and your whole visit charted on one screen.">
+<meta property="og:image" content="https://triadehr.com/assets/promo/poster-wide-hd.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Triad EHR: the EHR that finally fits root-cause care.">
+<meta name="twitter:description" content="The EHR for cash-based functional and integrative practices, with Applied Kinesiology built in. In daily clinical use today.">
+<meta name="twitter:image" content="https://triadehr.com/assets/promo/poster-wide-hd.jpg">
 
-<!-- Favicon: upward triangle in accent teal -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 5 L29 27 L3 27 Z' fill='%230f6e6e'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="apple-touch-icon" href="assets/logo.svg">
+<link rel="preload" as="image" href="assets/site/ipad-cockpit.webp" fetchpriority="high">
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Spline+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#ffffff;
-    --bg-alt:#f3f6f8;
-    --surface:#ffffff;
-    --ink:#15212b;
-    --ink-soft:#566570;
-    --ink-faint:#9aa7b1;
-    --line:#e4e9ed;
-    --accent:#0f6e6e;
-    --accent-2:#d6604a;
-    --accent-ink:#ffffff;
-    --accent-soft:#e6f0f0;
-    --hero-bg:#0e2230;
-    --hero-ink:#f3f7f7;
-    --hero-soft:#9fb4bd;
-    --hero-line:#223a48;
-    /* Data-viz / progression palette (literal, not themed) */
-    --prog-red:#d1493f;
-    --prog-yellow:#e0a526;
-    --prog-blue:#3f78c4;
-    --prog-green:#2f9e6f;
-    --font-display:'Archivo';
-    --font-body:'Spline Sans';
-    --display-weight:800;
-    --display-spacing:-0.02em;
+    --bg:#f3f2ee; --card:#ffffff; --ink:#1b1f1e; --muted:#5a625f; --faint:#646c68; --line:#dcd9d1;
+    --accent:#0B5B52; --accent-2:#127a6e; --on-accent:#ffffff;
+    --accent-soft:#e3eeeb; --accent-line:#b9d6cf;
+    --warn-ink:#87570f; --warn-bg:#fbefd9;
+    --live-ink:#1e6b4a; --live-bg:#e2f1e8;
+    --bad-ink:#a8352c; --bad-bg:#f8e5e2;
+    --stage:#f4f1ea;
+    --field:#fbfaf7;
+    --hi:rgba(255,255,255,.75);
+    --glow:rgba(18,122,110,.14);
+    --sh-1:0 1px 2px rgba(27,31,30,.05), 0 2px 6px rgba(27,31,30,.04);
+    --sh-2:0 1px 2px rgba(27,31,30,.04), 0 8px 24px -8px rgba(27,31,30,.14);
+    --sh-3:0 2px 6px rgba(27,31,30,.05), 0 24px 48px -16px rgba(27,31,30,.22), 0 60px 120px -40px rgba(11,91,82,.25);
+    --device:drop-shadow(0 2px 3px rgba(27,31,30,.12)) drop-shadow(0 30px 40px rgba(27,31,30,.20));
+    --p-none:#c8463c; --p-some:#c98a12; --p-major:#2f6fbf; --p-resolved:#2a8a5f;
+    --serif:'Newsreader', Georgia, 'Times New Roman', serif;
+    --sans:'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --r1:10px; --r2:14px; --r3:20px; --r4:28px;
+    --pad:clamp(88px, 10vw, 144px);
+    --gut:clamp(16px, 4vw, 40px);
+    --max:1240px;
+    --band:#0d1513; --band-ink:#ecefed; --band-muted:#a9b6b2; --band-line:rgba(255,255,255,.12);
+    --offer:#0B5B52; --offer-ink:#ffffff; --offer-muted:rgba(255,255,255,.82);
+    interpolate-size:allow-keywords;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141816; --card:#1d2220; --ink:#ecefed; --muted:#a3aba7; --faint:#8f9894; --line:#2c3330;
+      --accent:#5fc2b3; --accent-2:#7fd3c6; --on-accent:#0b1412; --accent-soft:#1a2f2b; --accent-line:#2b4b45;
+      --warn-ink:#efc27a; --warn-bg:#3a2d15; --live-ink:#8fd9b0; --live-bg:#183326; --bad-ink:#f0928a; --bad-bg:#3a1f1c;
+      --field:#171b19; --hi:rgba(255,255,255,.05); --glow:rgba(95,194,179,.12);
+      --sh-1:0 1px 2px rgba(0,0,0,.35);
+      --sh-2:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -10px rgba(0,0,0,.6);
+      --sh-3:0 2px 6px rgba(0,0,0,.4), 0 30px 60px -20px rgba(0,0,0,.7), 0 60px 140px -40px rgba(95,194,179,.18);
+      --device:drop-shadow(0 0 .6px rgba(255,255,255,.45)) drop-shadow(0 30px 44px rgba(0,0,0,.6));
+      --p-none:#e2685d; --p-some:#e0a63a; --p-major:#6a9fe0; --p-resolved:#55bd8a;
+      --band:#0b0f0e; --offer:#123e38; --offer-ink:#ecefed; --offer-muted:rgba(236,239,237,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141816; --card:#1d2220; --ink:#ecefed; --muted:#a3aba7; --faint:#8f9894; --line:#2c3330;
+    --accent:#5fc2b3; --accent-2:#7fd3c6; --on-accent:#0b1412; --accent-soft:#1a2f2b; --accent-line:#2b4b45;
+    --warn-ink:#efc27a; --warn-bg:#3a2d15; --live-ink:#8fd9b0; --live-bg:#183326; --bad-ink:#f0928a; --bad-bg:#3a1f1c;
+    --field:#171b19; --hi:rgba(255,255,255,.05); --glow:rgba(95,194,179,.12);
+    --sh-1:0 1px 2px rgba(0,0,0,.35);
+    --sh-2:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -10px rgba(0,0,0,.6);
+    --sh-3:0 2px 6px rgba(0,0,0,.4), 0 30px 60px -20px rgba(0,0,0,.7), 0 60px 140px -40px rgba(95,194,179,.18);
+    --device:drop-shadow(0 0 .6px rgba(255,255,255,.45)) drop-shadow(0 30px 44px rgba(0,0,0,.6));
+    --p-none:#e2685d; --p-some:#e0a63a; --p-major:#6a9fe0; --p-resolved:#55bd8a;
+    --band:#0b0f0e; --offer:#123e38; --offer-ink:#ecefed; --offer-muted:rgba(236,239,237,.8);
   }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--font-body),sans-serif;
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
+    margin:0;color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;
+    background-color:var(--bg);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  section[id],div[id]{scroll-margin-top:88px;}
+  img,video,svg{max-width:100%;}
+  img{height:auto;display:block;}
+  [id],input,select,textarea{scroll-margin-top:96px;}
+  h1,h2,h3{text-wrap:balance;margin:0;font-weight:inherit;}
+  p{margin:0;text-wrap:pretty;}
+  p,li{overflow-wrap:break-word;}
+  ul{margin:0;padding:0;list-style:none;}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
+  a:hover{color:var(--accent-2);}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px;}
+  ::selection{background:color-mix(in srgb,var(--accent) 25%,transparent);}
 
-  h1,h2,h3{text-wrap:balance;}
+  .wrap{width:100%;max-width:calc(var(--max) + 2 * var(--gut));margin:0 auto;padding:0 var(--gut);}
+  .sec{padding:var(--pad) 0;position:relative;}
+  .eyebrow{font-family:var(--mono);font-weight:600;font-size:12px;line-height:1.4;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 16px;display:flex;align-items:center;gap:10px;}
+  .eyebrow .n{color:var(--faint);}
+  .display{font-family:var(--serif);font-weight:500;letter-spacing:-.018em;line-height:1.04;}
+  .h1{font-size:clamp(44px,5vw,76px);line-height:1;letter-spacing:-.025em;}
+  .h2{font-size:clamp(34px,4.2vw,56px);}
+  .h3{font-size:clamp(28px,3vw,40px);line-height:1.06;}
+  .lede{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted);max-width:62ch;}
+  .muted{color:var(--muted);}
+  .head{max-width:760px;margin-bottom:clamp(40px,5vw,64px);}
+  .head .h2{margin-bottom:16px;}
+  .head.center{margin-inline:auto;text-align:center;}
+  .head.center .eyebrow{justify-content:center;}
+  .head.center .lede{margin-inline:auto;}
 
-  .display{font-family:var(--font-display),sans-serif;font-weight:var(--display-weight);letter-spacing:var(--display-spacing);}
-  .mono{font-family:'Space Mono',monospace;}
+  .skip{position:absolute;left:-9999px;top:10px;background:var(--accent);color:var(--on-accent);padding:12px 16px;border-radius:10px;z-index:100;font-weight:600;}
+  .skip:focus{left:12px;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-  a{color:var(--accent);}
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 22px;border-radius:var(--r2);font-family:var(--sans);font-weight:600;font-size:16px;line-height:1.2;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background-color .18s ease, transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;text-align:center;position:relative;}
+  .btn svg{flex-shrink:0;transition:transform .18s ease;}
+  .btn:hover .go{transform:translateX(3px);}
+  .btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 1px 2px rgba(0,0,0,.12), 0 10px 24px -12px color-mix(in srgb,var(--accent) 80%,transparent);}
+  .btn-primary:hover{background:var(--accent-2);color:var(--on-accent);transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 2px 4px rgba(0,0,0,.12), 0 16px 32px -14px color-mix(in srgb,var(--accent) 90%,transparent);}
+  .btn-ghost{background:var(--card);color:var(--ink);border-color:var(--line);box-shadow:inset 0 1px 0 var(--hi), var(--sh-1);}
+  .btn-ghost:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));color:var(--ink);transform:translateY(-1px);}
+  .btn-sm{min-height:48px;padding:10px 18px;font-size:15px;border-radius:12px;}
 
-  details>summary{list-style:none;cursor:pointer;}
-  details>summary::-webkit-details-marker{display:none;}
+  /* Header */
+  .site-header{position:sticky;top:0;z-index:50;transition:background-color .25s ease, border-color .25s ease, box-shadow .25s ease;border-bottom:1px solid transparent;}
+  .site-header.scrolled{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom-color:color-mix(in srgb,var(--line) 80%,transparent);}
+  .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;}
+  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:18px;letter-spacing:-.01em;min-height:48px;}
+  .brand:hover{color:var(--ink);}
+  .brand img{width:30px;height:30px;border-radius:8px;}
+  .nav{display:flex;align-items:center;gap:2px;}
+  .nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 14px;font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;border-radius:10px;transition:color .15s ease, background-color .15s ease;}
+  .nav a:hover,.nav a[aria-current="true"]{color:var(--ink);}
+  .nav a[aria-current="true"]{background:color-mix(in srgb,var(--line) 50%,transparent);}
 
-  input,select,textarea,button{font-family:inherit;}
+  /* Hero */
+  .hero{position:relative;padding:clamp(40px,6vw,88px) 0 clamp(72px,8vw,120px);overflow:clip;}
+  .hero::before{content:"";position:absolute;inset:-200px -10% auto auto;width:min(1100px,90vw);height:900px;background:radial-gradient(closest-side, var(--glow), transparent 75%);pointer-events:none;}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,13fr);gap:clamp(32px,4vw,64px);align-items:center;position:relative;}
+  .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 10px;border-radius:999px;background:color-mix(in srgb,var(--card) 80%,transparent);border:1px solid var(--line);box-shadow:inset 0 1px 0 var(--hi);font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:28px;}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-2) 22%,transparent);flex-shrink:0;}
+  .hero h1{margin-bottom:24px;max-width:13ch;}
+  .hero .lede{margin-bottom:36px;max-width:46ch;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .trust{display:flex;align-items:flex-start;gap:10px;margin-top:32px;font-size:14px;line-height:1.5;color:var(--muted);max-width:52ch;}
+  .trust svg{color:var(--accent);flex-shrink:0;margin-top:1px;}
+
+  .stack{position:relative;margin-right:calc(-1 * clamp(0px, (100vw - var(--max)) / 2 - var(--gut), 120px));}
+  .stack{max-width:720px;justify-self:end;width:100%;}
+  .stack .ipad{width:100%;filter:var(--device);}
+  .stack .phone{position:absolute;width:23%;left:-7%;bottom:-11%;filter:var(--device);transform:rotate(-4deg);}
+  .stack .note{position:absolute;right:2%;bottom:-38px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+
+  /* Tour band */
+  .band{background:var(--band);color:var(--band-ink);position:relative;overflow:clip;isolation:isolate;box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -1px 0 rgba(255,255,255,.06);}
+  .band::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 0%, rgba(95,194,179,.16), transparent 70%), radial-gradient(40% 40% at 90% 100%, rgba(95,194,179,.08), transparent 70%);z-index:-1;}
+  .band .eyebrow{color:#7fd3c6;}
+  .band .eyebrow .n{color:var(--band-muted);}
+  .band .lede{color:var(--band-muted);}
+  .screen{position:relative;max-width:1120px;margin:0 auto;border-radius:22px;padding:8px;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 40px 100px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.06);}
+  .screen video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:15px;background:#000;object-fit:contain;}
+  .chapters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:28px auto 0;max-width:1120px;}
+  .chapters button{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:8px 16px;border-radius:999px;border:1px solid var(--band-line);background:rgba(255,255,255,.04);color:var(--band-ink);font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;transition:border-color .15s ease, background-color .15s ease;}
+  .chapters button:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07);}
+  .chapters button[aria-current="true"]{border-color:#5fc2b3;background:rgba(95,194,179,.14);}
+  .chapters .t{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#7fd3c6;}
+  .tour-note{text-align:center;font-size:13.5px;color:var(--band-muted);margin-top:18px;}
+
+  /* Statement */
+  .statement{max-width:900px;}
+  .statement .big{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.14;letter-spacing:-.015em;color:var(--ink);text-wrap:balance;}
+  .statement .big em{font-style:normal;color:var(--muted);}
+  .statement-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px);margin-top:40px;max-width:900px;}
+  .statement-cols p{color:var(--muted);font-size:17px;line-height:1.65;}
+  .statement-cols strong{color:var(--ink);font-weight:600;}
+
+  /* Bento */
+  .bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;}
+  .tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden;box-shadow:inset 0 1px 0 var(--hi), var(--sh-1);transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease, border-color .25s ease;}
+  .tile:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 var(--hi), var(--sh-2);border-color:color-mix(in srgb,var(--accent) 30%,var(--line));}
+  .s2{grid-column:span 2;} .s3{grid-column:span 3;} .s4{grid-column:span 4;} .r2{grid-row:span 2;}
+  .tile h3{font-family:var(--serif);font-weight:500;font-size:clamp(23px,2vw,27px);line-height:1.12;letter-spacing:-.01em;}
+  .tile p{font-size:15px;line-height:1.55;color:var(--muted);max-width:44ch;}
+  .tile .top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:28px;margin-bottom:4px;}
+  .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex-shrink:0;box-shadow:inset 0 0 0 1px var(--accent-line);}
+  .tag{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+  .tag-part{color:var(--warn-ink);background:var(--warn-bg);}
+  .tag-part::before{content:"";width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:7px solid currentColor;}
+  .viz{margin-top:auto;padding-top:20px;}
+
+  .tile.feature-tile{background:linear-gradient(160deg,var(--card) 40%, color-mix(in srgb,var(--accent-soft) 70%, var(--card)) 100%);}
+  .board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+  .board span{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:13px;font-weight:600;color:var(--ink);min-width:0;line-height:1.2;}
+  .board span.on{border-color:var(--accent);background:var(--accent-soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent);}
+  .board b{font-family:var(--mono);font-size:11px;min-width:20px;height:20px;border-radius:999px;display:inline-grid;place-items:center;background:var(--accent);color:var(--on-accent);flex-shrink:0;}
+
+  .labs-tile{padding-bottom:0;}
+  .labs-tile .phone-peek{margin:28px auto 0;width:min(80%,300px);height:clamp(280px,30vw,420px);overflow:hidden;position:relative;margin-top:auto;}
+  .labs-tile .phone-peek img{width:100%;filter:var(--device);}
+  .labs-tile .phone-peek::after{content:"";position:absolute;inset:auto 0 0 0;height:40px;background:linear-gradient(transparent,var(--card));}
+
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+  .chain span{font-size:13px;font-weight:600;padding:7px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);white-space:nowrap;}
+  .chain span:last-child{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent);}
+  .chain i{color:var(--faint);font-style:normal;font-size:13px;}
+
+  .typed{font-family:var(--mono);font-size:14px;font-weight:500;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;}
+  .typed .caret{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1.1s steps(1) infinite;}
+  .typed kbd{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:2px 7px;background:var(--card);flex-shrink:0;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .wave{display:flex;align-items:center;gap:12px;}
+  .wave .mic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);flex-shrink:0;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 16%,transparent);}
+  .bars{display:flex;align-items:center;gap:3px;height:40px;flex:1;min-width:0;overflow:hidden;}
+  .bars i{display:block;width:3px;border-radius:2px;background:color-mix(in srgb,var(--accent) 70%,transparent);height:30%;animation:eq 1.4s ease-in-out infinite;flex-shrink:0;}
+  @keyframes eq{0%,100%{transform:scaleY(.5);}50%{transform:scaleY(1.1);}}
+
+  .scale-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .scale-row div{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:13px;font-weight:600;line-height:1.2;white-space:nowrap;}
+
+  .crop{position:relative;height:clamp(160px,14vw,190px);margin:0 -28px -28px;overflow:hidden;border-top:1px solid var(--line);background:var(--stage);}
+  .crop img{position:absolute;width:max(152%,560px);max-width:none;right:-3%;bottom:-3%;}
+
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;font-weight:600;}
+  .flow span{padding:7px 11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);}
+  .flow i{color:var(--faint);font-style:normal;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);}
+  .chip svg{color:var(--accent);}
+
+  /* Chapters */
+  .chapter{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,6vw,96px);align-items:center;}
+  .chapter.flip{grid-template-columns:minmax(0,5fr) minmax(0,7fr);}
+  .chapter.flip .ch-media{order:2;}
+  .chapter + .chapter{margin-top:clamp(96px,12vw,168px);}
+  .ch-media{position:relative;}
+  .ch-media img{width:100%;max-width:720px;filter:var(--device);}
+  .chapter:not(.flip) .ch-media img{margin-left:auto;}
+  .chapter:not(.flip) .ch-media{margin-left:calc(-1 * clamp(0px, (100vw - var(--max)) / 2 - var(--gut), 140px));}
+  .chapter.flip .ch-media{margin-right:calc(-1 * clamp(0px, (100vw - var(--max)) / 2 - var(--gut), 140px));}
+  .ch-media::before{content:"";position:absolute;inset:10% 5%;background:radial-gradient(closest-side,var(--glow),transparent);z-index:-1;filter:blur(20px);}
+  .ch-text .h3{margin-bottom:18px;}
+  .ch-text > p:not(.eyebrow):not(.honest){color:var(--muted);font-size:17px;line-height:1.65;max-width:46ch;}
+  .points{margin-top:28px;display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line);padding-top:24px;}
+  .points li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;font-size:15.5px;line-height:1.5;color:var(--muted);}
+  .points li strong{color:var(--ink);font-weight:600;}
+  .points svg{color:var(--accent);margin-top:2px;}
+  .honest{display:flex;gap:12px;align-items:baseline;margin-top:24px;font-size:14px;line-height:1.55;color:var(--muted);max-width:52ch;}
+  .honest b{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;color:var(--accent);flex-shrink:0;padding:3px 8px;border-radius:6px;background:var(--accent-soft);}
+  .ranges{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+  .rchip{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;padding:6px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+
+  /* Fan of phones */
+  .fan-sec{margin-top:clamp(112px,13vw,184px);}
+  .fan{display:flex;justify-content:center;align-items:flex-end;margin:0 auto;max-width:1040px;padding:20px 0 0;}
+  .fan figure{margin:0;flex:0 0 auto;width:min(23%,250px);margin-inline:-1.2%;transition:transform .35s cubic-bezier(.2,.7,.2,1);position:relative;}
+  .fan figure img{width:100%;filter:var(--device);}
+  .fan figure:nth-child(1){transform:rotate(-7deg) translateY(30px);}
+  .fan figure:nth-child(2){transform:rotate(-2.5deg) translateY(4px);z-index:2;}
+  .fan figure:nth-child(3){transform:rotate(2.5deg) translateY(4px);z-index:2;}
+  .fan figure:nth-child(4){transform:rotate(7deg) translateY(30px);}
+  .fan figure:hover{transform:rotate(0) translateY(-14px);z-index:3;}
+  .fan-caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:1040px;margin:56px auto 0;}
+  .fan-caps li{font-size:14.5px;line-height:1.5;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .fan-caps b{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+  .fan figcaption{display:none;}
+
+  /* Gallery */
+  .gallery-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:end;margin-bottom:36px;}
+  .gallery-head .h3{margin-bottom:0;}
+  .gallery-head p:not(.eyebrow):not(.honest){color:var(--muted);font-size:17px;line-height:1.65;max-width:54ch;}
+  .gal-ctrl{display:flex;gap:10px;justify-content:flex-end;margin-bottom:18px;}
+  .arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 1px 0 var(--hi), var(--sh-1);transition:border-color .15s ease, transform .15s ease;}
+  .arrow:hover{border-color:var(--accent);}
+  .arrow:disabled{opacity:.35;cursor:default;}
+  .track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 40px) / 2.35);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:4px 2px 24px;scrollbar-width:none;}
+  .track::-webkit-scrollbar{display:none;}
+  .track > li{scroll-snap-align:start;min-width:0;}
+  .slide{margin:0;}
+  .slide .stage{border-radius:var(--r3);overflow:hidden;background:var(--stage);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.7), var(--sh-2);aspect-ratio:1080/922;}
+  .slide .stage img{width:100%;height:100%;object-fit:cover;}
+  .slide figcaption{padding:16px 4px 0;font-size:15px;line-height:1.5;color:var(--muted);max-width:44ch;}
+  .slide figcaption b{display:inline;font-weight:600;color:var(--ink);}
+  .slide figcaption .k{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+
+  /* Pricing */
+  .tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  .tier{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r4);padding:clamp(24px,3vw,40px);box-shadow:inset 0 1px 0 var(--hi), var(--sh-1);min-width:0;display:flex;flex-direction:column;}
+  .tier.featured{border-color:color-mix(in srgb,var(--accent) 60%,var(--line));box-shadow:inset 0 1px 0 var(--hi), 0 0 0 1px color-mix(in srgb,var(--accent) 40%,transparent), var(--sh-3);}
+  .tier-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+  .tier-name{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .tier.featured .tier-name{color:var(--accent);}
+  .target{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--warn-ink);background:var(--warn-bg);padding:5px 10px;border-radius:999px;white-space:nowrap;}
+  .price{font-family:var(--serif);font-weight:500;font-size:clamp(56px,6vw,76px);line-height:1;letter-spacing:-.03em;margin:22px 0 4px;color:var(--ink);}
+  .price small{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:0;color:var(--muted);margin-left:4px;}
+  .tier .for{font-size:15.5px;color:var(--muted);margin-bottom:24px;}
+  .incl{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:22px;}
+  .incl li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.5;}
+  .incl svg{color:var(--accent);margin-top:2px;}
+  .compare{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r4);padding:clamp(24px,3vw,40px);box-shadow:inset 0 1px 0 var(--hi), var(--sh-1);}
+  .compare-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+  .compare-head h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.01em;}
+  .compare-head p{font-size:14.5px;color:var(--muted);}
+  .rows{display:flex;flex-direction:column;gap:22px;}
+  .row-l{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:15px;margin-bottom:9px;}
+  .row-l span:first-child{min-width:0;color:var(--muted);}
+  .row-l span:last-child{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .row.ours .row-l span{color:var(--accent);font-weight:700;}
+  .rail{position:relative;height:10px;border-radius:999px;background:color-mix(in srgb,var(--line) 55%,transparent);}
+  .rail .seg{position:absolute;top:0;bottom:0;border-radius:999px;background:color-mix(in srgb,var(--muted) 45%,transparent);}
+  .rail .seg.fade{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--muted) 45%,transparent) 55%);}
+  .rail .seg.dash{background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--muted) 40%,transparent) 0 6px,transparent 6px 11px);}
+  .rail .pt{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);box-shadow:0 0 0 4px var(--card), 0 0 0 5px color-mix(in srgb,var(--accent) 35%,transparent);}
+  .rail .pt span{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);white-space:nowrap;}
+  .row.ours .rail{margin-top:30px;}
+  .axis{display:flex;justify-content:space-between;margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--faint);}
+  .fine{font-size:13px;line-height:1.6;color:var(--faint);}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);position:relative;}
+  .step{position:relative;padding-top:28px;border-top:1px solid var(--line);min-width:0;}
+  .step::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--bg);}
+  .step .num{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--accent);}
+  .step h3{font-family:var(--serif);font-weight:500;font-size:clamp(23px,2.2vw,28px);line-height:1.15;letter-spacing:-.01em;margin:12px 0 10px;}
+  .step p{font-size:15.5px;line-height:1.6;color:var(--muted);}
+
+  /* Security */
+  .secure{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start;}
+  .sec-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r3);overflow:hidden;}
+  .sec-item{background:var(--card);padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0;}
+  .sec-item h3{font-size:16.5px;font-weight:700;line-height:1.35;}
+  .sec-item p{font-size:14.5px;line-height:1.6;color:var(--muted);}
+  .claims{margin-top:16px;display:flex;gap:14px;align-items:flex-start;padding:20px 22px;border:1px dashed color-mix(in srgb,var(--muted) 45%,transparent);border-radius:var(--r2);font-size:14.5px;line-height:1.6;color:var(--muted);}
+  .claims b{color:var(--ink);font-weight:600;}
+  .claims svg{color:var(--warn-ink);flex-shrink:0;margin-top:2px;}
+
+  /* Founder */
+  .founder{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,96px);align-items:start;}
+  .founder .quote{font-family:var(--serif);font-weight:500;font-size:clamp(32px,3.8vw,52px);line-height:1.08;letter-spacing:-.02em;text-wrap:balance;}
+  .founder .quote::before{content:"\201C";display:block;font-size:1.6em;line-height:.6;color:var(--accent);margin-bottom:12px;}
+  .who{display:flex;align-items:center;gap:14px;margin-top:32px;}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent-line);display:grid;place-items:center;font-family:var(--serif);font-size:21px;color:var(--accent);flex-shrink:0;}
+  .who p{font-size:14.5px;line-height:1.45;color:var(--muted);}
+  .who strong{display:block;color:var(--ink);font-weight:600;font-size:15.5px;}
+  .letter{display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.7;color:var(--muted);max-width:56ch;}
+  .letter strong{color:var(--ink);font-weight:600;}
+  .sig{font-family:var(--serif);font-size:30px;color:var(--ink);font-style:italic;}
+
+  /* Offer + apply */
+  .offer{background:var(--offer);color:var(--offer-ink);position:relative;overflow:clip;isolation:isolate;}
+  .offer::before{content:"";position:absolute;inset:-30% -20% auto auto;width:900px;height:900px;background:radial-gradient(closest-side,rgba(255,255,255,.10),transparent 70%);z-index:-1;}
+  .offer .eyebrow{color:var(--offer-ink);opacity:.85;}
+  .offer .lede{color:var(--offer-muted);}
+  .offer-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:start;}
+  .offer h2{margin-bottom:20px;}
+  .gets{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}
+  .gets h3{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:14px;}
+  .gets ul{display:flex;flex-direction:column;gap:11px;font-size:15.5px;line-height:1.45;}
+  .gets li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;}
+  .gets svg{margin-top:2px;opacity:.9;}
+  .offer-note{margin-top:32px;padding:16px 18px;border-radius:var(--r2);background:rgba(0,0,0,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);font-size:14.5px;line-height:1.55;color:var(--offer-muted);}
+  .offer-note strong{color:var(--offer-ink);}
+
+  .form-card{background:var(--card);color:var(--ink);border-radius:var(--r4);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:20px;box-shadow:inset 0 1px 0 var(--hi), 0 40px 80px -30px rgba(0,0,0,.45);border:1px solid var(--line);}
+  .form-card .fhead h3{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:-.01em;margin-bottom:6px;}
+  .form-card .fhead p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  .lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:var(--ink);min-width:0;}
+  .req{color:var(--accent);}
+  .opt{color:var(--faint);font-weight:400;}
+  .field{font-family:var(--sans);font-size:16px;min-height:50px;padding:12px 14px;border-radius:12px;border:1px solid color-mix(in srgb,var(--muted) 35%,transparent);background:var(--field);color:var(--ink);outline:none;width:100%;transition:border-color .15s ease, box-shadow .15s ease;}
+  textarea.field{resize:vertical;line-height:1.5;}
+  .field:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent);}
+  ::placeholder{color:var(--faint);opacity:1;}
   input,select,textarea{accent-color:var(--accent);}
-  ::placeholder{color:var(--ink-faint);opacity:1;}
+  fieldset{border:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  legend{font-size:14px;font-weight:600;color:var(--ink);padding:0;margin-bottom:10px;}
+  .choices{display:flex;flex-wrap:wrap;gap:8px;}
+  .choice{display:flex;align-items:center;gap:10px;min-height:48px;font-size:14.5px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;transition:border-color .15s ease, background-color .15s ease;}
+  .choice:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));}
+  .choice:has(input:checked){border-color:var(--accent);background:var(--accent-soft);}
+  .choice input{width:18px;height:18px;margin:0;flex-shrink:0;}
+  .consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--muted);line-height:1.5;cursor:pointer;min-height:48px;}
+  .consent input{margin-top:2px;width:20px;height:20px;flex-shrink:0;}
+  .err{color:var(--bad-ink);font-size:13px;font-weight:600;}
+  .err:empty{display:none;}
+  .success{display:none;background:var(--card);color:var(--ink);border-radius:var(--r4);padding:52px 30px;text-align:center;box-shadow:0 40px 80px -30px rgba(0,0,0,.45);}
+  .success .check{width:60px;height:60px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;margin:0 auto 22px;}
+  .waitlist{margin-top:16px;border-radius:var(--r3);padding:20px 22px;background:rgba(0,0,0,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);}
+  .waitlist form{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .waitlist .wt{flex:1 1 100%;min-width:0;}
+  .waitlist .wt strong{display:block;font-size:15.5px;margin-bottom:2px;}
+  .waitlist .wt span{font-size:14px;color:var(--offer-muted);}
+  .waitlist .field{flex:1 1 200px;width:auto;min-width:0;background:rgba(255,255,255,.95);color:#1b1f1e;border-color:transparent;}
+  .waitlist .field::placeholder{color:#6f7773;}
+  .waitlist .err{color:#ffd1cc;width:100%;}
+  .btn-invert{background:var(--offer-ink);color:var(--offer);font-weight:600;}
+  .btn-invert:hover{background:color-mix(in srgb,var(--offer-ink) 88%,var(--offer));color:var(--offer);transform:translateY(-1px);}
+  #waitSuccess{display:none;font-size:15px;}
 
-  /* Focus states for form controls (replaces prototype's style-focus attr) */
-  .field:focus{
-    border-color:var(--accent);
-    box-shadow:0 0 0 3px var(--accent-soft);
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start;}
+  .faq-side{position:sticky;top:110px;}
+  .faq{border-top:1px solid var(--line);}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:72px;padding:18px 0;font-size:17.5px;font-weight:600;color:var(--ink);transition:color .15s ease;}
+  .faq summary:hover{color:var(--accent);}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary:focus-visible{outline-offset:4px;}
+  .plus{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);flex-shrink:0;transition:transform .25s ease, background-color .2s ease;}
+  .faq details[open] .plus{transform:rotate(45deg);background:var(--accent-soft);}
+  .faq details::details-content{height:0;overflow:clip;transition:height .3s ease, content-visibility .3s allow-discrete;}
+  .faq details[open]::details-content{height:auto;}
+  .faq details p{font-size:16px;line-height:1.7;color:var(--muted);padding:0 48px 24px 0;max-width:62ch;}
+
+  /* Final CTA */
+  .final{background:var(--band);color:var(--band-ink);text-align:center;position:relative;overflow:clip;isolation:isolate;}
+  .final::before{content:"";position:absolute;left:50%;bottom:-420px;width:1200px;height:800px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(95,194,179,.2),transparent 70%);z-index:-1;}
+  .final .lede{color:var(--band-muted);margin:0 auto 36px;max-width:52ch;}
+  .final .cta-row{justify-content:center;}
+  .final .btn-primary{background:#127a6e;color:#fff;}
+  .final .btn-primary:hover{background:#178b7e;color:#fff;}
+  .final .btn-ghost{background:rgba(255,255,255,.04);color:var(--band-ink);border-color:var(--band-line);box-shadow:none;}
+  .final .btn-ghost:hover{border-color:rgba(255,255,255,.35);color:var(--band-ink);}
+
+  /* Footer */
+  .site-footer{padding:56px 0 40px;}
+  .foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:start;padding-bottom:32px;border-bottom:1px solid var(--line);}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:4px 8px;justify-content:flex-end;}
+  .foot-nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 10px;font-size:14.5px;color:var(--muted);text-decoration:none;border-radius:8px;}
+  .foot-nav a:hover{color:var(--ink);}
+  .foot-meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted);margin-top:24px;}
+  .foot-meta a{min-height:24px;}
+  .foot .fine{grid-column:1 / -1;max-width:96ch;}
+
+  /* Reveal */
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .js .reveal.in{opacity:1;transform:none;}
+  .js .reveal.d1{transition-delay:.06s;} .js .reveal.d2{transition-delay:.12s;} .js .reveal.d3{transition-delay:.18s;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    .js .reveal{opacity:1;transform:none;}
   }
 
-  @keyframes triadFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-  @keyframes triadPulse{0%,100%{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%, transparent);}50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 10%, transparent);}}
-
-  .err{color:var(--prog-red);font-size:12.5px;font-weight:500;}
-
-  /* ---------- Responsive reflow ---------- */
-  @media (max-width:880px){
-    .hero-grid{grid-template-columns:1fr !important;gap:44px !important;}
-    .cap-card{grid-template-columns:1fr !important;gap:22px !important;}
-    .cap-card .cap-text,
-    .cap-card .cap-visual{order:0 !important;}
-    .offer-grid{grid-template-columns:1fr !important;}
-    .steps-grid{grid-template-columns:1fr !important;}
-    .hipaa-grid{grid-template-columns:1fr !important;}
-    .form-row{grid-template-columns:1fr !important;}
+  /* Responsive */
+  @media (max-width:1100px){
+    .bento{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .s2,.s3{grid-column:span 1;} .s4{grid-column:span 2;}
+    .bento .r2{grid-row:span 2;}
+    .track{grid-auto-columns:calc((100% - 20px) / 1.6);}
   }
-  @media (max-width:560px){
-    .pricing-row{grid-template-columns:96px 1fr 62px !important;gap:10px !important;}
+  @media (max-width:960px){
+    .nav{display:none;}
+    .hero-grid{grid-template-columns:minmax(0,1fr);gap:56px;}
+    .hero h1{max-width:16ch;}
+    .stack{margin-right:0;max-width:760px;width:calc(100% - 7%);margin-left:auto;}
+    .chapter,.chapter.flip{grid-template-columns:minmax(0,1fr);gap:40px;}
+    .chapter.flip .ch-media{order:0;}
+    .chapter .ch-media,.chapter.flip .ch-media{margin:0 auto;max-width:760px;width:100%;}
+    .gallery-head,.secure,.founder,.offer-grid,.faq-grid{grid-template-columns:minmax(0,1fr);}
+    .faq-side{position:static;}
+    .statement-cols{grid-template-columns:minmax(0,1fr);gap:16px;}
+    .fan-caps{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .foot{grid-template-columns:minmax(0,1fr);}
+    .foot-nav{justify-content:flex-start;margin-left:-10px;}
+  }
+  @media (max-width:720px){
+    body{font-size:16px;}
+    .bento{grid-template-columns:minmax(0,1fr);}
+    .s2,.s3,.s4{grid-column:auto;} .bento .r2{grid-row:auto;}
+    .tile{padding:24px;}
+    .crop{margin:0 -24px -24px;}
+    .board{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .tiers,.steps,.sec-list,.gets{grid-template-columns:minmax(0,1fr);}
+    .steps{gap:32px;}
+    .form-row{grid-template-columns:minmax(0,1fr);}
+    .track{grid-auto-columns:86%;gap:14px;}
+    .fan{display:grid;grid-auto-flow:column;grid-auto-columns:62%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:start;padding:8px 2px 28px;max-width:none;scrollbar-width:none;}
+    .fan::-webkit-scrollbar{display:none;}
+    .fan figure,.fan figure:nth-child(n){width:auto;margin:0;transform:none;scroll-snap-align:center;}
+    .fan figure:hover{transform:none;}
+    .fan figcaption{display:block;margin-top:16px;font-size:14px;line-height:1.5;color:var(--muted);}
+    .fan figcaption b{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+    .fan-caps{display:none;}
+    .faq details p{padding-right:0;}
+    .faq summary{font-size:16.5px;}
+    .cta-row .btn{width:100%;}
+    .hero .cta-row .btn{width:100%;}
+    .letter{font-size:17px;}
+    .offer .cta-row .btn{width:auto;}
+  }
+  @media (max-width:640px){
+    .screen{max-width:320px;padding:6px;border-radius:30px;}
+    .screen video{aspect-ratio:9/16;border-radius:25px;}
+    .chapters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+    .chapters button{width:100%;justify-content:flex-start;border-radius:14px;font-size:13.5px;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:8px 14px;}
+    .stack .phone{width:27%;left:-6%;bottom:-14%;}
+    .stack{width:calc(100% - 4%);}
+    .stack .note{bottom:-34px;font-size:10px;}
+    .pill{font-size:12.5px;}
+    .claims{flex-direction:column;gap:8px;}
+  }
+  @media (max-width:380px){
+    .site-header .btn-sm{padding:10px 14px;}
   }
 </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 86%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
-    <div style="max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
-      <a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);">
-        <span style="width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:16px solid var(--accent);display:inline-block;"></span>
-        <span class="display" style="font-size:20px;">Triad</span>
-        <span class="mono" style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);padding:2px 6px;border-radius:5px;">EHR</span>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5v7l6-3.5z" fill="currentColor"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></g></symbol>
+      <symbol id="i-warn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></g></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="wrap">
+      <a href="#top" class="brand" aria-label="Triad EHR home">
+        <img src="assets/logo.svg" alt="" width="30" height="30">
+        <span>Triad EHR</span>
       </a>
-      <div style="display:flex;align-items:center;gap:14px;">
-        <a href="#apply" style="font-weight:600;font-size:14px;text-decoration:none;background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:10px;white-space:nowrap;">Apply</a>
-      </div>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#tour">Tour</a>
+        <a href="#unique">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#security">Security</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#apply" class="btn btn-primary btn-sm">Apply</a>
     </div>
   </header>
 
+  <main id="main">
+
   <!-- HERO -->
-  <section id="top" style="background:var(--hero-bg);color:var(--hero-ink);padding:84px 24px 96px;border-bottom:1px solid var(--hero-line);overflow:hidden;">
-    <div class="hero-grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.02fr 0.98fr;gap:56px;align-items:center;">
-      <div style="min-width:0;">
-        <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 22px;display:inline-flex;align-items:center;gap:9px;">
-          <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%, transparent);animation:triadPulse 2s ease-in-out infinite;"></span>
-          Built for Applied Kinesiology · Founding Cohort open
-        </p>
-        <h1 class="display" style="font-size:clamp(36px,5.3vw,62px);line-height:1.02;margin:0 0 24px;">One screen. One hand on the patient. The whole visit, charted.</h1>
-        <p style="font-size:19px;line-height:1.62;color:var(--hero-soft);max-width:60ch;margin:0 0 32px;">Triad is the cash-only EHR built for Applied Kinesiology. It costs less than ChiroTouch because it carries none of the insurance machinery you never open. And it charts your whole visit on one screen. Fire a macro, tap a few findings, done. Built at the table by a practicing AK doc.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-          <a href="#apply" style="font-weight:600;font-size:16px;text-decoration:none;background:var(--accent);color:var(--accent-ink);padding:15px 26px;border-radius:12px;box-shadow:0 12px 30px -10px color-mix(in srgb,var(--accent) 60%, transparent);">Apply for the Founding Cohort</a>
-          <a href="#waitlist" style="font-weight:600;font-size:16px;text-decoration:none;color:var(--hero-ink);padding:15px 22px;border-radius:12px;border:1px solid var(--hero-line);">Not ready yet? Join the waitlist</a>
+  <section id="top" class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="pill"><span class="dot" aria-hidden="true"></span>Founding Cohort now open</p>
+        <h1 class="display h1">The EHR that finally fits <span style="white-space:nowrap">root-cause</span> care.</h1>
+        <p class="lede">For cash-based functional and integrative practices, with Applied Kinesiology built in. Tap your findings, type your shorthand or just talk, and Triad turns the visit into a structured note on one screen.</p>
+        <div class="cta-row">
+          <a href="#apply" class="btn btn-primary">Apply for the Founding Cohort<svg class="go" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="#tour" class="btn btn-ghost" id="watchTour"><svg width="20" height="20" aria-hidden="true"><use href="#i-play"/></svg>Watch the 37-second tour</a>
         </div>
-        <p class="mono" style="font-size:12.5px;letter-spacing:0.02em;color:var(--hero-soft);margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px 18px;">
-          <span>✓ Free pilot</span><span>✓ We move your data for you</span><span>✓ Month-to-month, no lock-in</span>
-        </p>
+        <p class="trust"><svg width="18" height="18" aria-hidden="true"><use href="#i-shield"/></svg><span>In daily clinical use at Momentum Health &amp; Wellness, Elk River, MN. Built by a practicing AK doctor.</span></p>
       </div>
-
-      <!-- COCKPIT MOCK -->
-      <div style="min-width:0;position:relative;">
-        <div style="position:absolute;inset:-10% -8% -14% -8%;background:radial-gradient(120% 120% at 70% 10%, color-mix(in srgb,var(--accent) 30%, transparent), transparent 60%);filter:blur(8px);"></div>
-        <div style="position:relative;background:#ffffff;border:1px solid #e6ebee;border-radius:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,0.55);overflow:hidden;">
-          <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;background:#0f1a22;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;"></span>
-            <span class="mono" style="flex:1;text-align:center;font-size:11px;letter-spacing:0.1em;color:#9fb0bb;">TRIAD · SINGLE-SCREEN COCKPIT</span>
-            <span class="mono" style="font-size:9px;letter-spacing:0.08em;color:#0f1a22;background:#febc2e;padding:3px 6px;border-radius:5px;font-weight:700;">SYNTHETIC DEMO</span>
-          </div>
-          <div style="padding:15px;background:#f6f8f9;color:#1d2730;">
-            <!-- macros -->
-            <div style="display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap;">
-              <span class="mono" style="font-size:9px;letter-spacing:0.08em;color:#7c8a93;align-self:center;margin-right:2px;">MACROS</span>
-              <span style="font-size:12px;font-weight:600;background:#0f7a6f;color:#fff;padding:6px 11px;border-radius:8px;">Vagal</span>
-              <span style="font-size:12px;font-weight:600;background:#fff;border:1px solid #dce3e6;color:#33424b;padding:6px 11px;border-radius:8px;">ICV + HV</span>
-              <span style="font-size:12px;font-weight:600;background:#fff;border:1px solid #dce3e6;color:#33424b;padding:6px 11px;border-radius:8px;">HPA</span>
-              <span style="font-size:12px;font-weight:700;background:#fff;border:1px dashed #c3ccd1;color:#7c8a93;padding:6px 10px;border-radius:8px;">+</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;">
-              <!-- findings -->
-              <div style="background:#fff;border:1px solid #e7edef;border-radius:11px;padding:11px;">
-                <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:#7c8a93;margin-bottom:9px;">FINDINGS</div>
-                <div style="display:flex;flex-direction:column;gap:7px;">
-                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;"><span>ICV</span><span style="width:9px;height:9px;border-radius:50%;background:#d1493f;"></span></div>
-                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;"><span>Houston valve</span><span style="width:9px;height:9px;border-radius:50%;background:#e0a526;"></span></div>
-                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;"><span>Vagus tone</span><span style="width:9px;height:9px;border-radius:50%;background:#3f78c4;"></span></div>
-                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;"><span>Psoas</span><span style="width:9px;height:9px;border-radius:50%;background:#2f9e6f;"></span></div>
-                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;"><span>TFL</span><span style="width:9px;height:9px;border-radius:50%;background:#2f9e6f;"></span></div>
-                </div>
-              </div>
-              <!-- note -->
-              <div style="background:#fff;border:1px solid #e7edef;border-radius:11px;padding:11px;">
-                <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:#7c8a93;margin-bottom:9px;">NOTE · AUTO</div>
-                <div style="display:flex;flex-direction:column;gap:7px;">
-                  <span style="height:7px;border-radius:4px;background:#e9eef0;width:100%;"></span>
-                  <span style="height:7px;border-radius:4px;background:#e9eef0;width:88%;"></span>
-                  <span style="height:7px;border-radius:4px;background:#e9eef0;width:94%;"></span>
-                  <span style="height:7px;border-radius:4px;background:#e9eef0;width:72%;"></span>
-                </div>
-                <div style="margin-top:11px;font-size:11px;color:#0f7a6f;font-weight:600;">Generated from findings</div>
-                <div class="mono" style="margin-top:8px;font-size:9.5px;background:#eef5f4;color:#0f7a6f;border-radius:6px;padding:5px 7px;display:inline-block;">SUPERBILL · 98941</div>
-              </div>
-            </div>
-            <!-- heatmap -->
-            <div style="background:#fff;border:1px solid #e7edef;border-radius:11px;padding:11px;margin-top:11px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><span class="mono" style="font-size:9px;letter-spacing:0.08em;color:#7c8a93;">PROGRESS · 6 VISITS</span><span style="font-size:10px;color:#7c8a93;">red → green</span></div>
-              <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;">
-                <span style="height:14px;border-radius:3px;background:#d1493f;"></span><span style="height:14px;border-radius:3px;background:#d1493f;"></span><span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#3f78c4;"></span><span style="height:14px;border-radius:3px;background:#2f9e6f;"></span>
-                <span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#3f78c4;"></span><span style="height:14px;border-radius:3px;background:#3f78c4;"></span><span style="height:14px;border-radius:3px;background:#2f9e6f;"></span><span style="height:14px;border-radius:3px;background:#2f9e6f;"></span>
-                <span style="height:14px;border-radius:3px;background:#d1493f;"></span><span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#e0a526;"></span><span style="height:14px;border-radius:3px;background:#3f78c4;"></span><span style="height:14px;border-radius:3px;background:#3f78c4;"></span><span style="height:14px;border-radius:3px;background:#2f9e6f;"></span>
-              </div>
-            </div>
-            <!-- bottom bar -->
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;background:#fff;border:1px solid #e7edef;border-radius:11px;padding:10px 12px;">
-              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:11.5px;color:#33424b;">Supplement plan</span><span style="width:8px;height:8px;border-radius:50%;background:#2f9e6f;"></span><span style="width:8px;height:8px;border-radius:50%;background:#3f78c4;"></span><span style="width:8px;height:8px;border-radius:50%;background:#e0a526;"></span><span style="font-size:11px;color:#0f7a6f;font-weight:600;">→ checkout</span></div>
-              <span class="mono" style="font-size:10.5px;color:#0f7a6f;background:#eef5f4;padding:5px 9px;border-radius:7px;">≈ 52s · illustrative</span>
-            </div>
-          </div>
-        </div>
-        <p class="mono" style="font-size:10.5px;color:var(--hero-soft);text-align:center;margin:14px 0 0;">Illustrative mockup · synthetic-patient data · not a real chart</p>
+      <div class="stack">
+        <img class="ipad" src="assets/site/ipad-cockpit.webp" width="1036" height="786" fetchpriority="high" decoding="async" alt="Triad's charting cockpit on an iPad with a demo patient. Callouts mark the three ways to chart: Talk, using the Record and Dictate buttons; Tap, using the body-region wheel and finding tiles; and Type, using the plain-words scratch notes box. The auto-written note sits on the right.">
+        <img class="phone" src="assets/site/phone-labs.webp" width="428" height="895" decoding="async" alt="A demo patient's labs on a phone, with markers flagged out of range, borderline or optimal against functional ranges.">
+        <p class="note" aria-hidden="true">Demo patient</p>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section style="background:var(--bg);padding:96px 24px;">
-    <div style="max-width:760px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-2);margin:0 0 18px;">The problem</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,44px);line-height:1.06;margin:0 0 28px;">You're paying insurance prices for software that doesn't speak AK.</h2>
-      <div style="font-size:18px;line-height:1.7;color:var(--ink-soft);display:flex;flex-direction:column;gap:18px;">
-        <p style="margin:0;">Let's be honest about your current setup.</p>
-        <p style="margin:0;">You run a cash practice. You haven't filed an insurance claim in years. But you're still paying $159, $199, even $306 a month for an EHR built around a clearinghouse and a claim-scrubber you never touch. You're renting billing machinery for a practice that doesn't bill insurance.</p>
-        <p style="margin:0;font-weight:600;color:var(--ink);">And the charting? It's worse.</p>
-        <p style="margin:0;">You were trained at ICAK. You think in challenges, muscle tests, valves, organ indicators, cranial faults, offenders, reflexes. But your EHR has never heard of any of it. So you cram every finding into a free-text SOAP box you hate, hopping between tabs, scrolling for fields, fighting software that was clearly built for somebody else. By the time you've documented one visit the way you actually practice, the next patient is already waiting.</p>
-        <p style="margin:0;">Then there's the picture. A patient asks, "Am I actually getting better?" And all you've got is "trust me." No way to show them the progression across visits. No way to point at the screen and say, look, here's your case turning from red to green.</p>
-        <p style="margin:0;font-weight:600;color:var(--ink);">You didn't get into AK to fight a keyboard. You got into it for what happens at the table.</p>
-        <p class="display" style="margin:0;font-size:22px;color:var(--ink);">That's the whole reason Triad exists.</p>
+  <!-- TOUR -->
+  <section id="tour" class="sec band" aria-labelledby="tourTitle">
+    <div class="wrap">
+      <div class="head center reveal">
+        <p class="eyebrow"><span class="n">01</span>The tour</p>
+        <h2 class="display h2" id="tourTitle">A day with Triad, in 37 seconds.</h2>
+        <p class="lede">From the 6 AM morning brief to finishing a note on your phone.</p>
+      </div>
+      <div class="screen reveal">
+        <video id="tourVideo" controls playsinline preload="metadata" poster="assets/promo/poster-wide-hd.jpg" aria-label="A day with Triad: a 37-second tour of the app, from the 6 AM morning brief to finishing a note on a phone. Demo data only.">
+          <source src="assets/promo/wide.mp4" type="video/mp4" media="(min-width: 641px)">
+          <source src="assets/promo/vertical.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="assets/promo/wide.mp4">Download the tour video</a>.
+        </video>
+      </div>
+      <ul class="chapters" aria-label="Jump to a moment in the tour">
+        <li><button type="button" data-t="4"><span class="t">6:15 AM</span>Morning brief</button></li>
+        <li><button type="button" data-t="9"><span class="t">6:20 AM</span>Print it</button></li>
+        <li><button type="button" data-t="17"><span class="t">8:05 AM</span>Tap your findings</button></li>
+        <li><button type="button" data-t="22"><span class="t">8:25 AM</span>Review and sign</button></li>
+        <li><button type="button" data-t="26"><span class="t">12:30 PM</span>Functional-range labs</button></li>
+        <li><button type="button" data-t="30"><span class="t">5:45 PM</span>Finish from anywhere</button></li>
+      </ul>
+      <p class="tour-note">Demo data throughout. Every name and value on screen is made up.</p>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="sec" aria-labelledby="whyTitle">
+    <div class="wrap">
+      <div class="statement reveal">
+        <p class="eyebrow"><span class="n">02</span>Why it exists</p>
+        <h2 class="big" id="whyTitle">You practice root-cause care in a cash practice. <em>Your EHR was built for insurance billing, so what makes your care different ends up in a free-text box.</em></h2>
+      </div>
+      <div class="statement-cols reveal d1">
+        <p>Plenty of cash practices still pay $150 to $300 a month for clearinghouse machinery they never touch. <strong>And lab patterns, protocols, muscle tests and challenges still get typed by hand while the next patient waits.</strong></p>
+        <p>Then a patient asks, "Am I actually getting better?" and all you have is "trust me." Triad exists so you can stop fighting a keyboard and show them.</p>
       </div>
     </div>
   </section>
 
-  <!-- CAPABILITIES -->
-  <section style="background:var(--bg-alt);padding:96px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;">What it does</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 14px;max-width:20ch;">Five things your EHR can't do. Triad was built to do all of them.</h2>
-      <div style="display:flex;flex-direction:column;gap:18px;margin-top:46px;">
+  <!-- BENTO -->
+  <section id="unique" class="sec" style="padding-top:0;" aria-labelledby="uniqueTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow"><span class="n">03</span>What only Triad does</p>
+        <h2 class="display h2" id="uniqueTitle">Built around how a visit actually runs.</h2>
+        <p class="lede">Everything here is live on real visits. Anything still in testing says so.</p>
+      </div>
 
-        <!-- Cap 1 -->
-        <div class="cap-card" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:center;">
-          <div class="cap-text">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span class="display" style="font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;">1</span><h3 class="display" style="font-weight:700;font-size:23px;margin:0;">Chart AK the way you were actually trained</h3></div>
-            <p style="font-size:16.5px;line-height:1.62;color:var(--ink-soft);margin:0;">Your findings are findings, not free text. Challenges, muscle tests, valves, organ indicators, cranial faults, offenders, reflexes, all captured as structured data on a screen that already speaks AK. Triad then generates the narrative SOAP note from what you tapped, so the clean note writes itself.</p>
-            <div style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:10px;"><span class="mono" style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);padding-top:2px;">PROOF</span><span style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);">Built directly from the ICAK charting model. No other EHR on the market structures AK findings this way.</span></div>
-          </div>
-          <div class="cap-visual" style="background:var(--bg-alt);border:1px solid var(--line);border-radius:13px;padding:16px;">
-            <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:11px;">STRUCTURED FINDINGS</div>
-            <div style="display:flex;flex-wrap:wrap;gap:7px;">
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">Challenge <span style="width:8px;height:8px;border-radius:50%;background:#d1493f;"></span></span>
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">ICV <span style="width:8px;height:8px;border-radius:50%;background:#e0a526;"></span></span>
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">Cranial fault <span style="width:8px;height:8px;border-radius:50%;background:#3f78c4;"></span></span>
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">Offender <span style="width:8px;height:8px;border-radius:50%;background:#d1493f;"></span></span>
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">Organ indicator <span style="width:8px;height:8px;border-radius:50%;background:#2f9e6f;"></span></span>
-              <span style="font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 10px;display:inline-flex;gap:7px;align-items:center;">Reflex <span style="width:8px;height:8px;border-radius:50%;background:#3f78c4;"></span></span>
+      <div class="bento">
+        <article class="tile s4 feature-tile reveal">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg></span></div>
+          <h3>AK mode: a macro board that speaks AK.</h3>
+          <p>Challenges, muscle tests, valves, organ indicators, cranial faults and reflexes. One tap each, saved as structured findings. Not an AK practice? Your own macros work the same way.</p>
+          <div class="viz" aria-hidden="true">
+            <div class="board">
+              <span class="on">GI &amp; Metabolic <b>1</b></span>
+              <span>TMJ &amp; Cranial</span>
+              <span>Neuro &amp; Systems</span>
+              <span class="on">Subluxation <b>3</b></span>
+              <span>Valves</span>
+              <span>Organ indicators</span>
+              <span class="on">Reflexes <b>2</b></span>
+              <span>Muscle tests</span>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Cap 2 -->
-        <div class="cap-card" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1.25fr;gap:34px;align-items:center;">
-          <div class="cap-text" style="order:2;">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span class="display" style="font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;">2</span><h3 class="display" style="font-weight:700;font-size:23px;margin:0;">The whole visit on one screen, in about a minute</h3></div>
-            <p style="font-size:16.5px;line-height:1.62;color:var(--ink-soft);margin:0;">This is the cockpit. One non-scrolling interface where you fire a macro, tap a few findings, drop in the supplement plan, and generate the superbill, without ever leaving the screen. No tab-hopping. No menu mazes. One-tap pattern macros (Vagal, ICV+HV, HPA) set findings across many sections at once. iPad-first, tap-and-voice, one-handed at the table.</p>
-            <div style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:10px;"><span class="mono" style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);padding-top:2px;">PROOF</span><span style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);">Our target is a routine visit charted in under 60 seconds. We're filming it on a synthetic-patient demo before we put a hard number on any ad. If the real number is 90 seconds, we'll say 90.</span></div>
-          </div>
-          <div class="cap-visual" style="order:1;background:var(--bg-alt);border:1px solid var(--line);border-radius:13px;padding:16px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><span class="mono" style="font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);">ONE SCREEN</span><span class="mono" style="font-size:11px;color:var(--accent);font-weight:700;">00:52</span></div>
-            <div style="display:flex;gap:6px;margin-bottom:11px;"><span style="flex:1;height:26px;border-radius:7px;background:var(--accent);opacity:0.92;"></span><span style="flex:1;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span><span style="flex:1;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-              <span style="height:34px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span><span style="height:34px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span><span style="height:34px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span><span style="height:34px;border-radius:7px;background:var(--surface);border:1px solid var(--line);"></span>
-            </div>
-            <div style="margin-top:11px;display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);"><span>macro → findings → plan → superbill</span><span>no scroll</span></div>
-          </div>
-        </div>
+        <article class="tile s2 r2 labs-tile reveal d1">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5M10 3v5.5L4.8 18a2 2 0 0 0 1.8 3h10.8a2 2 0 0 0 1.8-3L14 8.5V3"/><path d="M7.2 14h9.6"/></svg></span></div>
+          <h3>Functional-range labs, with trends.</h3>
+          <p>About 90 biomarkers flagged against ranges that account for sex, age, menopausal status and meds. Imports LabCorp-format PDFs and DUTCH reports.</p>
+          <div class="phone-peek"><img src="assets/site/phone-labs.webp" width="428" height="895" loading="lazy" decoding="async" alt="Phone screen of a demo patient's labs, with HOMA-IR, insulin and lipid markers flagged against functional ranges and a percent change beside each."></div>
+        </article>
 
-        <!-- Cap 3 -->
-        <div class="cap-card" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:center;">
-          <div class="cap-text">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span class="display" style="font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;">3</span><h3 class="display" style="font-weight:700;font-size:23px;margin:0;">A progress picture your patient can actually see</h3></div>
-            <p style="font-size:16.5px;line-height:1.62;color:var(--ink-soft);margin:0;">Every finding gets a color as it changes across visits, red to yellow to blue to green. Stack those across the whole case and you get a cross-visit heat-map: the entire patient story on one screen. When a patient asks "am I improving?", you turn the iPad around and show them. It's one of the strongest retention tools in the practice, and it's built in.</p>
-            <div style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:10px;"><span class="mono" style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);padding-top:2px;">PROOF</span><span style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);">This displays the progression of findings you entered. It's a visualization of your charting, not a clinical outcome measure.</span></div>
+        <article class="tile s2 reveal">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg></span></div>
+          <h3>Work a finding all the way to the fix.</h3>
+          <p>For AK practitioners: charted as one chain, printed in the note as plain clinical sentences.</p>
+          <div class="viz chain" aria-label="Weak muscle, to organ, to offender, to counter nutrient">
+            <span>Weak muscle</span><i aria-hidden="true">→</i><span>Organ</span><i aria-hidden="true">→</i><span>Offender</span><i aria-hidden="true">→</i><span>Nutrient</span>
           </div>
-          <div class="cap-visual" style="background:var(--bg-alt);border:1px solid var(--line);border-radius:13px;padding:16px;">
-            <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:11px;">CROSS-VISIT HEAT-MAP</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:5px;"><span style="height:15px;border-radius:3px;background:#d1493f;"></span><span style="height:15px;border-radius:3px;background:#d1493f;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span></div>
-              <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:5px;"><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span></div>
-              <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:5px;"><span style="height:15px;border-radius:3px;background:#d1493f;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#e0a526;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span></div>
-              <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:5px;"><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#3f78c4;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span><span style="height:15px;border-radius:3px;background:#2f9e6f;"></span></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:10.5px;color:var(--ink-faint);"><span>Visit 1</span><span>Visit 8</span></div>
-          </div>
-        </div>
+        </article>
 
-        <!-- Cap 4 -->
-        <div class="cap-card" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1.25fr;gap:34px;align-items:center;">
-          <div class="cap-text" style="order:2;">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span class="display" style="font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;">4</span><h3 class="display" style="font-weight:700;font-size:23px;margin:0;">Functional-range labs, not just lab cutoffs</h3></div>
-            <p style="font-size:16.5px;line-height:1.62;color:var(--ink-soft);margin:0;">Triad tracks labs against functional ranges, demographic-aware for sex, age, menopausal status, and meds, across about 70 biomarkers. Sparklines for trend, a status heat-map, a system radar, correlations. You see a value flagged against the functional target you actually care about, not just the lab's "normal."</p>
-            <div style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:10px;"><span class="mono" style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);padding-top:2px;">PROOF</span><span style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);">Triad organizes and displays the lab data you enter. It does not diagnose, interpret results, or make clinical decisions. That's your call, as it should be.</span></div>
-          </div>
-          <div class="cap-visual" style="order:1;background:var(--bg-alt);border:1px solid var(--line);border-radius:13px;padding:16px;">
-            <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:13px;">FUNCTIONAL RANGE · ~70 BIOMARKERS</div>
-            <div style="display:flex;flex-direction:column;gap:13px;">
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--ink);">Ferritin</span><span style="color:#e0a526;font-weight:600;">low-functional</span></div><div style="height:7px;border-radius:5px;background:linear-gradient(90deg,#d1493f,#e0a526,#2f9e6f,#e0a526,#d1493f);position:relative;"><span style="position:absolute;left:24%;top:-3px;width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--ink);"></span></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--ink);">TSH</span><span style="color:#2f9e6f;font-weight:600;">optimal</span></div><div style="height:7px;border-radius:5px;background:linear-gradient(90deg,#d1493f,#e0a526,#2f9e6f,#e0a526,#d1493f);position:relative;"><span style="position:absolute;left:50%;top:-3px;width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--ink);"></span></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--ink);">Vitamin D</span><span style="color:#3f78c4;font-weight:600;">trending up</span></div><div style="height:7px;border-radius:5px;background:linear-gradient(90deg,#d1493f,#e0a526,#2f9e6f,#e0a526,#d1493f);position:relative;"><span style="position:absolute;left:62%;top:-3px;width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--ink);"></span></div></div>
-            </div>
-          </div>
-        </div>
+        <article class="tile s2 reveal d1">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M7.5 14h9"/></svg></span></div>
+          <h3>Shorthand that charts itself.</h3>
+          <p>Type the way you think. Typed muscles keep their side.</p>
+          <div class="viz" aria-hidden="true"><div class="typed"><span>R tricep MR R TFL<span class="caret"></span></span><kbd>Enter</kbd></div></div>
+        </article>
 
-        <!-- Cap 5 -->
-        <div class="cap-card" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:center;">
-          <div class="cap-text">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span class="display" style="font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;">5</span><h3 class="display" style="font-weight:700;font-size:23px;margin:0;">Your dispensary income, captured in the same minute you chart</h3></div>
-            <p style="font-size:16.5px;line-height:1.62;color:var(--ink-soft);margin:0;">The supplement plan you build during the visit flows straight to checkout. Inventory decrements, low-stock alerts fire, dose quick-picks are right there (about 316 products supported). The recommendation you made at the table becomes the sale at the front desk, no separate clunky step, no lost revenue. Your dispensary is a profit center, so Triad treats it like one.</p>
-            <div style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:10px;"><span class="mono" style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);padding-top:2px;">PROOF</span><span style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);">Fullscript bridge is on the roadmap, not built yet. Today's dispensary is Triad's own in-office POS and inventory.</span></div>
-          </div>
-          <div class="cap-visual" style="background:var(--bg-alt);border:1px solid var(--line);border-radius:13px;padding:16px;">
-            <div class="mono" style="font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:11px;">PLAN → CHECKOUT</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;"><span style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:#2f9e6f;"></span>Magnesium glycinate</span><span style="color:var(--ink-faint);">2/day</span></div>
-              <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;"><span style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:#3f78c4;"></span>Methyl B-complex</span><span style="color:var(--ink-faint);">1/day</span></div>
-              <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;"><span style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:#e0a526;"></span>Adrenal support</span><span style="color:var(--ink-faint);">AM</span></div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);"><span class="mono" style="font-size:11px;color:var(--ink-faint);">INVENTORY ↓ AUTO</span><span style="font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:6px 11px;border-radius:8px;">Add to checkout</span></div>
-          </div>
-        </div>
+        <article class="tile s2 reveal">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22"><use href="#i-mic"/></svg></span></div>
+          <h3>Dictation that knows your vocabulary.</h3>
+          <p>Medical-mode, with AK terms built in. It waits for the end of your thought, and "scratch that" takes it back.</p>
+          <div class="viz wave" aria-hidden="true"><span class="mic"><svg width="20" height="20"><use href="#i-mic"/></svg></span><span class="bars" id="bars"></span></div>
+        </article>
 
+        <article class="tile s2 reveal d1">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><rect x="5" y="13" width="3" height="5" rx="1"/><rect x="10.5" y="9" width="3" height="9" rx="1"/><rect x="16" y="5" width="3" height="13" rx="1"/></svg></span></div>
+          <h3>A progress picture patients can see.</h3>
+          <p>Every symptom and finding moves on one four-step scale. Turn the iPad around, or print it.</p>
+          <div class="viz scale-row" aria-label="The four-step progress scale">
+            <div><svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><rect x="2" y="2" width="14" height="14" rx="2" fill="var(--p-none)"/></svg>No change</div>
+            <div><svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.5L16.5 15.5h-15z" fill="var(--p-some)"/></svg>Some</div>
+            <div><svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.5l7.5 7.5L9 16.5 1.5 9z" fill="var(--p-major)"/></svg>Major</div>
+            <div><svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7.5" fill="var(--p-resolved)"/></svg>Resolved</div>
+          </div>
+        </article>
+
+        <article class="tile s2 reveal d2">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22"><use href="#i-shield"/></svg></span></div>
+          <h3>Signed means sealed.</h3>
+          <p>The server seals each signed note. Changes go on as dated amendments, with an audit trail.</p>
+          <div class="crop"><img src="assets/site/ipad-review.webp" width="1076" height="759" loading="lazy" decoding="async" alt="The Review and sign sheet for a demo patient, with the supplement plan and a Sign visit button."></div>
+        </article>
+
+        <article class="tile s2 reveal">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2.5-1.6L13 21l-2.5-1.6L8 21l-2-1.3z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span class="tag tag-part">Cards: final testing</span></div>
+          <h3>Chart to checkout, no re-typing.</h3>
+          <p>The supplement plan you build at the table lands in checkout, and the superbill fills from the note.</p>
+          <div class="viz flow" aria-hidden="true"><span>Plan</span><i>→</i><span>Checkout</span><i>→</i><span>Inventory</span></div>
+        </article>
+
+        <article class="tile s2 reveal d1">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="2.5" width="15" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></span></div>
+          <h3>Made for an iPad at the table.</h3>
+          <p>Big touch targets, installs like an app, and keeps charting when the Wi-Fi drops.</p>
+          <div class="viz chip-row" aria-hidden="true"><span class="chip"><svg width="14" height="14"><use href="#i-check"/></svg>Works offline</span><span class="chip"><svg width="14" height="14"><use href="#i-check"/></svg>Syncs on reconnect</span></div>
+        </article>
+
+        <article class="tile s2 reveal d2">
+          <div class="top"><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5l1.6 4.4L16 9.5l-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6z"/><path d="M17.5 14l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span></div>
+          <h3>AI drafts. You sign.</h3>
+          <p>Drafted notes and a morning brief for each patient. Nothing an AI writes is ever signed for you.</p>
+          <div class="viz chip-row" aria-hidden="true"><span class="chip" style="color:var(--warn-ink);background:var(--warn-bg);border-color:transparent;">Draft · waiting in your sign queue</span></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- PRICING COMPARISON -->
-  <section style="background:var(--bg);padding:96px 24px;">
-    <div style="max-width:900px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-2);margin:0 0 18px;">The math</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 12px;">A fraction of ChiroTouch and Cerbo, because you're not renting insurance machinery.</h2>
-      <p style="font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:60ch;margin:0 0 38px;">We don't claim cheapest. We claim right-priced. Here's the public list pricing against the EHRs AK docs actually overpay for, per provider, per month.</p>
-      <div style="display:flex;flex-direction:column;gap:11px;">
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">Cerbo</span><span style="height:13px;border-radius:7px;background:var(--line);width:100%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">~$306</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">ChiroHD</span><span style="height:13px;border-radius:7px;background:var(--line);width:97.7%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">~$299</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">ChiroTouch Advanced</span><span style="height:13px;border-radius:7px;background:var(--line);width:97.7%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">$299</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">Power2Practice</span><span style="height:13px;border-radius:7px;background:var(--line);width:65%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">$199+</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">ChiroTouch Core</span><span style="height:13px;border-radius:7px;background:var(--line);width:52%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">$159</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;background:var(--accent-soft);border:1px solid var(--accent);border-radius:11px;padding:10px 12px;margin:3px -12px;"><span style="font-size:15px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:8px;"><span style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid var(--accent);"></span>Triad</span><span style="height:15px;border-radius:7px;background:var(--accent);width:42%;"></span><span style="font-size:15px;font-weight:700;text-align:right;color:var(--accent);">~$129</span></div>
-        <div class="pricing-row" style="display:grid;grid-template-columns:170px 1fr 88px;gap:14px;align-items:center;"><span style="font-size:14px;color:var(--ink-soft);">Jane <span style="color:var(--ink-faint);font-size:12px;">(add-ons stack)</span></span><span style="height:13px;border-radius:7px;background:var(--line);width:26%;"></span><span style="font-size:14px;font-weight:600;text-align:right;color:var(--ink);">$79+</span></div>
+  <!-- CHAPTERS -->
+  <section id="closer" class="sec" style="padding-top:0;" aria-labelledby="closerTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow"><span class="n">04</span>A closer look</p>
+        <h2 class="display h2" id="closerTitle">Real screens. Demo patients.</h2>
+        <p class="lede">Straight from the app, filled with made-up patients. Nothing here is a mockup.</p>
       </div>
-      <p class="mono" style="font-size:11.5px;line-height:1.6;color:var(--ink-faint);margin:26px 0 0;">Public list pricing, June 2026. Triad's ~$129 is a target being validated with our first cohort, not a locked number. Against Jane we don't compete on price, we win on the cockpit and AK-native charting. One flat price, month-to-month, no per-add-on stacking.</p>
+
+      <div class="chapter">
+        <div class="ch-media reveal">
+          <img src="assets/site/ipad-review.webp" width="1076" height="759" loading="lazy" decoding="async" alt="Triad's Review and sign sheet on an iPad for a demo patient: Subjective, Objective with four documented challenges, Assessment, and a Plan table of supplements with dose and status, above Keep charting and Sign visit buttons.">
+        </div>
+        <div class="ch-text reveal d1">
+          <p class="eyebrow">Review and sign</p>
+          <h3 class="display h3">Review it, sign it, next patient.</h3>
+          <p>Fire a macro, tap a few findings, drop in the supplement plan. The note is already written when you open Review.</p>
+          <ul class="points">
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Copy-forward</strong> brings last visit's items over from one tick-list.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Your own SOAP macros</strong> sit right under each section.</span></li>
+          </ul>
+          <p class="honest"><b>HONEST</b><span>We haven't published a visit-time number. When we do, it'll be clocked on a real recording.</span></p>
+        </div>
+      </div>
+
+      <div class="chapter flip">
+        <div class="ch-media reveal">
+          <img src="assets/site/ipad-labs.webp" width="1076" height="759" loading="lazy" decoding="async" alt="Triad's lab view on an iPad for a demo patient, with ranges set for her sex, age and menopausal status, flagged markers grouped by panel, baseline-to-latest bands, a system scan radar chart and a list of the markers that changed most.">
+        </div>
+        <div class="ch-text reveal d1">
+          <p class="eyebrow">Labs</p>
+          <h3 class="display h3">Functional ranges, not just the lab's cutoff.</h3>
+          <p>Each value is flagged against the functional target, with the trend across draws and a heads-up before rechecks come due.</p>
+          <div class="ranges" aria-label="How lab values are flagged">
+            <span class="rchip" style="color:var(--bad-ink);background:var(--bad-bg);"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Out of range</span>
+            <span class="rchip" style="color:var(--warn-ink);background:var(--warn-bg);"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 1a4 4 0 0 1 0 8z" fill="currentColor"/></svg>Borderline</span>
+            <span class="rchip" style="color:var(--live-ink);background:var(--live-bg);"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>Optimal</span>
+          </div>
+          <p class="honest"><b>HONEST</b><span>Triad organizes and displays lab data. It doesn't diagnose or interpret. Direct electronic lab ordering is in development.</span></p>
+        </div>
+      </div>
+
+      <div class="fan-sec">
+        <div class="head center reveal">
+          <p class="eyebrow">Thumb docks · iPad and phone</p>
+          <h3 class="display h3">Everything you reach for, right under your thumb.</h3>
+        </div>
+        <div class="fan reveal" role="list" aria-label="Four phone screens">
+          <figure role="listitem"><img src="assets/site/phone-schedule.webp" width="428" height="865" loading="lazy" decoding="async" alt="Phone screen of the Triad week schedule for October 12 to 18, 2026, with Today, Day or Week, and a New button docked at the bottom above the tab bar."><figcaption><b>Schedule</b>Today, day or week, and New, all docked at the bottom.</figcaption></figure>
+          <figure role="listitem"><img src="assets/site/phone-calendar.webp" width="428" height="865" loading="lazy" decoding="async" alt="Phone screen showing October and November 2026 calendars at once, with dots under booked days and a weeks-out marker beside each row."><figcaption><b>Calendar</b>Two months at a glance, with "+3 wk" markers for rechecks.</figcaption></figure>
+          <figure role="listitem"><img src="assets/site/phone-patients.webp" width="428" height="865" loading="lazy" decoding="async" alt="Phone screen of the Triad patient list with demo patients tagged DEMO, and Search patients, Filters and a New button docked at the bottom."><figcaption><b>Patients</b>Search, filters and New patient, under your thumb.</figcaption></figure>
+          <figure role="listitem"><img src="assets/site/phone-labs.webp" width="428" height="895" loading="lazy" decoding="async" alt="Phone screen of a demo patient's labs with Flagged, All and Changed filters and a draw-date stepper docked at the bottom."><figcaption><b>Labs</b>Flagged, All or Changed, and step between draws.</figcaption></figure>
+        </div>
+        <ul class="fan-caps reveal">
+          <li><b>Schedule</b>Today, day or week, and New, all docked at the bottom.</li>
+          <li><b>Calendar</b>Two months at a glance, with "+3 wk" markers for rechecks.</li>
+          <li><b>Patients</b>Search, filters and New patient, under your thumb.</li>
+          <li><b>Labs</b>Flagged, All or Changed, and step between draws.</li>
+        </ul>
+      </div>
+
+      <div class="fan-sec">
+        <div class="gallery-head reveal">
+          <div>
+            <p class="eyebrow">Dispensary and inventory</p>
+            <h3 class="display h3">Snap the packing slip. Shelf restocked.</h3>
+          </div>
+          <div>
+            <p>Each line on the slip lands on the product already on your shelf, with the count ready to add. Nothing touches stock until you tap Add.</p>
+            <p class="honest"><b>HONEST</b><span>This is Triad's own in-office inventory. Card processing is in final testing; an online-dispensary connection is in development.</span></p>
+          </div>
+        </div>
+        <div class="gal-ctrl" data-for="invTrack" hidden>
+          <button type="button" class="arrow" data-dir="-1" aria-label="Previous screen"><svg width="20" height="20" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg></button>
+          <button type="button" class="arrow" data-dir="1" aria-label="Next screen"><svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+        <ul class="track" id="invTrack" tabindex="0" aria-label="Inventory restock, four screens">
+          <li><figure class="slide"><div class="stage"><img src="assets/site/inv-1-snap.webp" width="1080" height="922" loading="lazy" decoding="async" alt="A demo vendor packing slip beside an iPad showing Triad's Check shipment screen: each invoice line matched to a shelf product with its received count, and a badge reading 11 of 11 lines matched."></div><figcaption><span class="k">1 · Snap</span><b>Photograph the slip.</b> Every line lands on a product you already stock.</figcaption></figure></li>
+          <li><figure class="slide"><div class="stage"><img src="assets/site/inv-2-flagged.webp" width="1080" height="922" loading="lazy" decoding="async" alt="Triad's Check shipment list on an iPad with one line marked Best guess, check, highlighted as flagged for review."></div><figcaption><span class="k">2 · Flagged</span><b>Close isn't exact.</b> A near-match gets a Best guess flag for you to check.</figcaption></figure></li>
+          <li><figure class="slide"><div class="stage"><img src="assets/site/inv-3-photo.webp" width="1080" height="922" loading="lazy" decoding="async" alt="The packing slip photo opened on an iPad with one line item boxed in yellow, and Previous and Next buttons to step through lines."></div><figcaption><span class="k">3 · Check</span><b>See the source.</b> Tap a line and the photo opens with it boxed.</figcaption></figure></li>
+          <li><figure class="slide"><div class="stage"><img src="assets/site/inv-4-phone.webp" width="1080" height="922" loading="lazy" decoding="async" alt="Two phones side by side: one showing the Check shipment list with a Best guess line, the other showing the packing slip photo with the matching line boxed."></div><figcaption><span class="k">4 · Phone</span><b>Right at the front desk.</b> Unpack, snap and check on your phone.</figcaption></figure></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section style="background:var(--bg-alt);padding:96px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;">How it works</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 46px;">Switching is the easy part. That's on purpose.</h2>
-      <div class="steps-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;">
-          <span class="mono" style="font-size:12px;color:var(--accent);font-weight:700;">STEP 01</span>
-          <h3 class="display" style="font-weight:700;font-size:20px;margin:14px 0 10px;">We move your data for you, free</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin:0;">You send your Jane export or prior-app data. We import it. You keep your full case history. You don't lift a finger, and you own a clean export forever if you ever leave.</p>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;">
-          <span class="mono" style="font-size:12px;color:var(--accent);font-weight:700;">STEP 02</span>
-          <h3 class="display" style="font-weight:700;font-size:20px;margin:14px 0 10px;">We build your cockpit around how you practice</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin:0;">On a setup call, we turn your most-used patterns into one-tap macros, live. Rename buttons, reorder sections, snapshot a visit to make your own macro. No code. By day one you're charting your workflow, not ours.</p>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;">
-          <span class="mono" style="font-size:12px;color:var(--accent);font-weight:700;">STEP 03</span>
-          <h3 class="display" style="font-weight:700;font-size:20px;margin:14px 0 10px;">You chart your first live day with the founder on the line</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin:0;">Todd sits in for your first day of real charting. Questions get answered in the moment. Your staff learns the one screen in an afternoon, because the single screen is the training.</p>
-        </div>
+  <!-- PRICING -->
+  <section id="pricing" class="sec" style="padding-top:0;" aria-labelledby="pricingTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow"><span class="n">05</span>Founding target pricing</p>
+        <h2 class="display h2" id="pricingTitle">Priced for a cash practice.</h2>
+        <p class="lede">One flat price per provider, month-to-month, no add-ons. The only split is voice and AI, because those cost money to run.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- OFFER -->
-  <section style="background:var(--accent);color:var(--accent-ink);padding:96px 24px;">
-    <div style="max-width:1000px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-ink);opacity:0.75;margin:0 0 18px;">The offer</p>
-      <h2 class="display" style="font-size:clamp(28px,4.2vw,46px);line-height:1.04;margin:0 0 20px;">The Founding Cohort: 5 to 10 AK practices. Open now.</h2>
-      <p style="font-size:18px;line-height:1.62;opacity:0.92;max-width:64ch;margin:0 0 14px;">Here's the deal, and it's a real one. We're taking a small group of AK practices into Triad as founding design partners. You get a free pilot, full concierge onboarding, and the founder on a weekly call building the tool around how you actually work. In exchange, you give us honest feedback, and if Triad earns it, a testimonial and a case study down the road.</p>
-      <p style="font-size:18px;line-height:1.62;opacity:0.92;max-width:64ch;margin:0 0 40px;">When the pilot ends, you roll onto a founding rate locked in for life, below what everyone else will pay. No surprise invoice. We name the paid date on day one.</p>
-      <div class="offer-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-        <div style="background:color-mix(in srgb, #ffffff 13%, transparent);border:1px solid color-mix(in srgb, #ffffff 26%, transparent);border-radius:16px;padding:26px;">
-          <h3 class="display" style="font-weight:700;font-size:18px;margin:0 0 16px;">What you get</h3>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:15.5px;line-height:1.5;">
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>A free pilot window, real patients, your actual practice</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>Free concierge migration, we move your data for you</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>Custom macros built around your workflow, live</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>The founder on a weekly call, shaping the product</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>A founding price locked for life when you convert</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">✓</span>Month-to-month always. Clean export anytime. No lock-in.</li>
+      <div class="tiers">
+        <div class="tier reveal">
+          <div class="tier-top"><p class="tier-name">Foundation</p><span class="target">Founding target</span></div>
+          <p class="price">$79<small>/mo per provider</small></p>
+          <p class="for">For the doc who taps instead of talks.</p>
+          <ul class="incl">
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>The full charting cockpit, macros and AK mode</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Scheduling, cash billing and superbills</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Dispensary, checkout and functional-range labs</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Intake forms and patient email</li>
           </ul>
         </div>
-        <div style="background:color-mix(in srgb, #ffffff 13%, transparent);border:1px solid color-mix(in srgb, #ffffff 26%, transparent);border-radius:16px;padding:26px;">
-          <h3 class="display" style="font-weight:700;font-size:18px;margin:0 0 16px;">What we ask</h3>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:15.5px;line-height:1.5;">
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">→</span>Use the cockpit daily on real visits</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">→</span>A short weekly feedback call during the pilot</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">→</span>Honest input, the good and the garbage</li>
-            <li style="display:flex;gap:10px;"><span style="font-weight:700;">→</span>If we earn it: a testimonial and a case study later</li>
+        <div class="tier featured reveal d1">
+          <div class="tier-top"><p class="tier-name">Professional</p><span class="target">Founding target</span></div>
+          <p class="price">$129<small>/mo per provider</small></p>
+          <p class="for">Everything in Foundation, plus your voice.</p>
+          <ul class="incl">
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Everything in Foundation</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Medical-mode voice dictation</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>AI note drafts and summaries</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Generous fair-use limits</li>
           </ul>
-          <div style="margin-top:20px;padding:14px;background:color-mix(in srgb,#000000 14%, transparent);border-radius:11px;font-size:13.5px;line-height:1.55;opacity:0.95;">
-            <strong style="display:block;margin-bottom:4px;">Pricing, shown plainly:</strong>
-            Standard pricing is targeted around $129/mo per provider, below ChiroTouch ($159+), Cerbo ($306), and Power2Practice ($199+). Founding Cohort members lock in lower, for life. Exact numbers get finalized with our first cohort docs, we'd rather set them honestly with you than guess at you.
-          </div>
         </div>
       </div>
-      <div style="margin-top:34px;">
-        <a href="#apply" style="display:inline-block;font-weight:700;font-size:16px;text-decoration:none;background:var(--accent-ink);color:var(--accent);padding:15px 28px;border-radius:12px;">Apply for the Founding Cohort</a>
+
+      <div class="compare reveal">
+        <div class="compare-head">
+          <h3>How that compares</h3>
+          <p>Typical public list prices by category, per provider, per month.</p>
+        </div>
+        <div class="rows">
+          <div class="row"><div class="row-l"><span>Insurance-built chiropractic EHRs</span><span>$159 to $299</span></div><div class="rail"><span class="seg" style="left:53%;right:.4%;"></span></div></div>
+          <div class="row"><div class="row-l"><span>Functional-medicine EHRs</span><span>up to ~$269</span></div><div class="rail"><span class="seg fade" style="left:0;width:89.7%;"></span></div></div>
+          <div class="row"><div class="row-l"><span>Low-cost generalist practice software</span><span>$54 to $99 + add-ons</span></div><div class="rail"><span class="seg" style="left:18%;width:15%;"></span><span class="seg dash" style="left:33%;width:14%;"></span></div></div>
+          <div class="row ours"><div class="row-l"><span>Triad, founding targets</span><span>$79 and $129</span></div><div class="rail"><span class="pt" style="left:26.3%;"><span>$79</span></span><span class="pt" style="left:43%;"><span>$129</span></span></div></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span>$0</span><span>$100</span><span>$200</span><span>$300</span></div>
+        <p class="fine" style="margin-top:24px;">Category ranges from public list pricing, July 2026. Triad's prices are founding targets we're validating with our founding practices, not locked numbers. Against low-cost generalist software we don't win on price; we win on charting built for functional and AK care.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWITCHING -->
+  <section class="sec" style="padding-top:0;" aria-labelledby="switchTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow"><span class="n">06</span>How switching works</p>
+        <h2 class="display h2" id="switchTitle">Switching is the easy part. On purpose.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="num">STEP 01</span>
+          <h3>We move your data, free.</h3>
+          <p>Patients, appointments and chart-note files from your current EHR's export. Anything we can't match gets listed, never guessed.</p>
+        </div>
+        <div class="step reveal d1">
+          <span class="num">STEP 02</span>
+          <h3>We build your board.</h3>
+          <p>Your most-used patterns become one-tap macros during setup. Rename, reorder or hide anything. No code.</p>
+        </div>
+        <div class="step reveal d2">
+          <span class="num">STEP 03</span>
+          <h3>Go live with the founder on standby.</h3>
+          <p>Todd is a text or email away on your first day. A setup checklist walks your staff through the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section id="security" class="sec" style="padding-top:0;" aria-labelledby="secTitle">
+    <div class="wrap secure">
+      <div class="reveal">
+        <p class="eyebrow"><span class="n">07</span>Security and HIPAA</p>
+        <h2 class="display h2" id="secTitle" style="margin-bottom:16px;">Built for HIPAA from day one.</h2>
+        <p class="lede">Every service that touches patient data is under a signed Business Associate Agreement. Here's the whole list.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="sec-list">
+          <div class="sec-item">
+            <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18.5h10.5a4 4 0 0 0 .6-8 6 6 0 0 0-11.6 1.3A3.4 3.4 0 0 0 7 18.5z"/></svg></span>
+            <h3>Google Cloud, under a signed BAA</h3>
+            <p>The app, database, sign-in, file storage and AI drafting.</p>
+          </div>
+          <div class="sec-item">
+            <span class="ico" aria-hidden="true"><svg width="22" height="22"><use href="#i-mic"/></svg></span>
+            <h3>AssemblyAI and Amazon SES, each under a BAA</h3>
+            <p>Medical-mode dictation and patient email.</p>
+          </div>
+          <div class="sec-item">
+            <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg></span>
+            <h3>Your practice, your own database</h3>
+            <p>Sealed signed notes, an audit trail on every chart change, and nightly backups checked every morning.</p>
+          </div>
+          <div class="sec-item">
+            <span class="ico" aria-hidden="true"><svg width="22" height="22"><use href="#i-shield"/></svg></span>
+            <h3>We sign a BAA with your practice</h3>
+            <p>Triad EHR LLC signs before any patient data comes in. You own your data, and the full export is never locked.</p>
+          </div>
+        </div>
+        <div class="claims">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-warn"/></svg>
+          <p><b>What we don't claim.</b> No "HIPAA certified" (no such thing exists). No SOC 2, HITRUST, ONC or FDA certification or clearance. Triad doesn't diagnose, treat or interpret labs. This site has no analytics or tracking cookies, and its forms just open your email app.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOUNDER -->
-  <section style="background:var(--bg);padding:96px 24px;">
-    <div style="max-width:820px;margin:0 auto;">
-      <div style="display:flex;align-items:center;gap:18px;margin-bottom:30px;">
-        <div class="display" style="width:74px;height:74px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--line);flex-shrink:0;display:grid;place-items:center;font-size:24px;color:var(--accent);">TA</div>
-        <div>
-          <p class="mono" style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-2);margin:0 0 6px;">From the founder</p>
-          <p style="margin:0;font-size:15px;color:var(--ink-soft);">Dr. Todd Anderson, DC · Momentum Health &amp; Wellness · Elk River, MN</p>
+  <section class="sec" style="padding-top:0;" aria-label="From the founder">
+    <div class="wrap founder">
+      <div class="reveal">
+        <p class="eyebrow"><span class="n">08</span>From the founder</p>
+        <p class="quote">I built the EHR I always wanted, so I could stop fighting mine.</p>
+        <div class="who">
+          <div class="avatar" aria-hidden="true">TA</div>
+          <p><strong>Dr. Todd Anderson, DC</strong>Founder, Triad EHR LLC · Elk River, MN</p>
         </div>
       </div>
-      <h2 class="display" style="font-size:clamp(26px,3.6vw,40px);line-height:1.08;margin:0 0 28px;">I built the EHR I always wanted. So I could stop fighting mine.</h2>
-      <div style="font-size:18px;line-height:1.72;color:var(--ink-soft);display:flex;flex-direction:column;gap:18px;">
-        <p style="margin:0;">Hi, I'm Dr. Todd Anderson. I practice Applied Kinesiology at Momentum Health &amp; Wellness in Elk River, Minnesota. I'm in the room, at the table, every week, just like you.</p>
-        <p style="margin:0;">And for years I had the same problem you do. I was paying a fortune for an EHR built for an insurance practice I don't run. None of it spoke AK. So I jammed every muscle test and valve and offender into a free-text box, tab by tab, click by click, while my patient waited. It was slow. It was clunky. And it captured almost nothing of how I actually think about a case.</p>
-        <p style="margin:0;font-weight:600;color:var(--ink);">So I built what I wanted instead.</p>
-        <p style="margin:0;">Triad is the EHR I use in my own practice every single day. One screen. Fire a macro, tap a few findings, done. It charts AK the way ICAK trained me. It shows my patients a real picture of their progress. And it costs a fraction of what I was paying before, because it's built for cash, with none of the billing machinery I never touch.</p>
-        <p style="margin:0;">It's real. It's shipped. It runs my practice right now, on Google Cloud, under a signed HIPAA BAA. This isn't a pitch deck. It's the tool I chart on between patients.</p>
-        <p style="margin:0;">A second AK practice is onboarding now. I want a few more. Founding Cohort docs aren't customers of some absent vendor, you're design partners, and I'm the guy on the phone.</p>
-        <p style="margin:0;">If you practice the way I do, I think you're going to love this. Let me show you.</p>
-        <p class="display" style="margin:0;font-size:20px;color:var(--ink);">— Todd</p>
+      <div class="letter reveal d1">
+        <p>I practice Applied Kinesiology at Momentum Health &amp; Wellness, at the table every week like you. For years I paid for an EHR built for an insurance practice I don't run, and every muscle test, valve and offender went into a free-text box.</p>
+        <p><strong>So I built what I wanted instead.</strong> Triad is what I chart on every day, on Google Cloud under a signed HIPAA BAA. Since going live in June 2026 it has grown a ton, almost all of it from things I hit on real visits.</p>
+        <p>Now I want a few more practices to build the next stretch with. Functional medicine, chiropractic, naturopathic, AK or a mix: if you run a cash practice built on root-cause care, Triad is for you. You're design partners, not customers of a faraway vendor, and I'm the guy who answers your email.</p>
+        <p class="sig">Todd</p>
       </div>
     </div>
   </section>
 
-  <!-- HIPAA / TRUST -->
-  <section style="background:var(--bg-alt);padding:96px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-    <div style="max-width:1000px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;">Security &amp; HIPAA</p>
-      <h2 class="display" style="font-size:clamp(26px,3.6vw,40px);line-height:1.06;margin:0 0 14px;max-width:24ch;">Built on HIPAA-eligible infrastructure, under BAA. In production today.</h2>
-      <p style="font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:62ch;margin:0 0 40px;">Triad runs in production on Google Cloud under a signed Business Associate Agreement (BAA). Here's exactly what that means, and what it doesn't.</p>
-      <div class="hipaa-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;"><h3 style="font-size:15.5px;margin:0 0 7px;color:var(--ink);">Hosted on Google Cloud under a signed BAA</h3><p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Your practice data lives on enterprise-grade infrastructure covered by a HIPAA Business Associate Agreement.</p></div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;"><h3 style="font-size:15.5px;margin:0 0 7px;color:var(--ink);">We sign a BAA with your practice</h3><p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Before you go live, we execute a Business Associate Agreement with you. That's the real, legal HIPAA mechanism, and we do it.</p></div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;"><h3 style="font-size:15.5px;margin:0 0 7px;color:var(--ink);">Voice &amp; AI run under BAA</h3><p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Dictation goes through AssemblyAI in medical mode under a BAA. The ambient scribe runs on Claude via Vertex under the GCP BAA. It drafts a note for your review, never auto-signed.</p></div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;"><h3 style="font-size:15.5px;margin:0 0 7px;color:var(--ink);">You own your data</h3><p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Clean export anytime. Month-to-month. No proprietary lock-in.</p></div>
+  <!-- OFFER + APPLY -->
+  <section id="apply" class="sec offer" aria-labelledby="applyTitle">
+    <div class="wrap offer-grid">
+      <div class="reveal">
+        <p class="eyebrow"><span class="n" style="color:inherit;opacity:.7;">09</span>The Founding Cohort</p>
+        <h2 class="display h2" id="applyTitle">A few cash practices. Real attention. Open now.</h2>
+        <p class="lede">Three to five cash-based practices at a time. Your first 45 to 60 days are free, then a founding rate locked for life. We name the paid date on day one.</p>
+        <div class="gets">
+          <div>
+            <h3>What you get</h3>
+            <ul>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>45 to 60 days free, on real patients</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Free data migration</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Macros built around your workflow</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>A weekly check-in with the founder</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>Month-to-month. Full export anytime.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>What we ask</h3>
+            <ul>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>Chart in Triad daily on real visits</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>A short weekly check-in (written is fine)</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>Honest input, the good and the garbage</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>If we earn it, a reference later</li>
+            </ul>
+          </div>
+        </div>
+        <p class="offer-note"><strong>Pricing, plainly:</strong> founding targets are $79 (Foundation) or $129 (Professional) per provider per month. Founding practices lock in lower, for life.</p>
       </div>
-      <div style="margin-top:18px;background:var(--surface);border:1px dashed var(--line);border-radius:13px;padding:20px;">
-        <p class="mono" style="font-size:11px;letter-spacing:0.08em;color:var(--accent-2);margin:0 0 9px;">HONEST ABOUT WHAT WE DON'T CLAIM</p>
-        <p style="font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin:0;">We don't say "HIPAA certified," because there's no such thing. We don't claim FDA clearance, and Triad doesn't diagnose, treat, or interpret your labs, it organizes and displays the data you enter. We don't hold ONC certification and we won't say we do. We sell speed, cost, and workflow, the things we can actually demonstrate.</p>
+
+      <div class="reveal d1">
+        <form id="applyForm" class="form-card" novalidate>
+          <div class="fhead">
+            <h3>Apply in two minutes</h3>
+            <p>Hitting Apply opens your email app, addressed to <a href="mailto:doc@drtoddanderson.com">doc@drtoddanderson.com</a>. Nothing is stored on this site. Please don't include patient information.</p>
+          </div>
+          <div class="form-row">
+            <label class="lbl"><span>Full name <span class="req" aria-hidden="true">*</span></span>
+              <input class="field" name="name" type="text" autocomplete="name" placeholder="Dr. Alex Rivera" required>
+              <span class="err" data-err="name" aria-live="polite"></span>
+            </label>
+            <label class="lbl"><span>Email <span class="req" aria-hidden="true">*</span></span>
+              <input class="field" name="email" type="email" autocomplete="email" placeholder="you@yourpractice.com" required>
+              <span class="err" data-err="email" aria-live="polite"></span>
+            </label>
+          </div>
+          <div class="form-row">
+            <label class="lbl"><span>Practice name <span class="req" aria-hidden="true">*</span></span>
+              <input class="field" name="practice" type="text" autocomplete="organization" placeholder="Your practice" required>
+              <span class="err" data-err="practice" aria-live="polite"></span>
+            </label>
+            <label class="lbl"><span>City / State <span class="req" aria-hidden="true">*</span></span>
+              <input class="field" name="location" type="text" placeholder="City, ST" required>
+              <span class="err" data-err="location" aria-live="polite"></span>
+            </label>
+          </div>
+          <div class="form-row">
+            <label class="lbl"><span>What do you chart in now? <span class="req" aria-hidden="true">*</span></span>
+              <input class="field" name="ehr" type="text" placeholder="Your current EHR, or paper" required>
+              <span class="err" data-err="ehr" aria-live="polite"></span>
+            </label>
+            <label class="lbl"><span>Patients per day <span class="req" aria-hidden="true">*</span></span>
+              <select class="field" name="volume" required>
+                <option value="">Choose a range…</option><option>Under 10</option><option>10 to 20</option><option>20 to 30</option><option>30 to 40</option><option>40+</option>
+              </select>
+              <span class="err" data-err="volume" aria-live="polite"></span>
+            </label>
+          </div>
+          <fieldset>
+            <legend>Are you a cash-based practice? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="cash" value="Yes, 100% cash">Yes, 100% cash</label>
+              <label class="choice"><input type="radio" name="cash" value="Mostly cash">Mostly cash, some insurance</label>
+              <label class="choice"><input type="radio" name="cash" value="No, primarily insurance">No, primarily insurance</label>
+            </div>
+            <span class="err" data-err="cash" aria-live="polite"></span>
+          </fieldset>
+          <fieldset>
+            <legend>What kind of practice? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="ptype" value="Functional medicine">Functional medicine</label>
+              <label class="choice"><input type="radio" name="ptype" value="Chiropractic / AK">Chiropractic / AK</label>
+              <label class="choice"><input type="radio" name="ptype" value="Naturopathic">Naturopathic</label>
+              <label class="choice"><input type="radio" name="ptype" value="Other">Other</label>
+            </div>
+            <span class="err" data-err="ptype" aria-live="polite"></span>
+            <label class="lbl"><span>Tell us more <span class="opt">optional</span></span>
+              <input class="field" name="ptypeOther" type="text" placeholder="Other practice type, or a mix">
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Do you use Applied Kinesiology or muscle testing? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="ak" value="Yes, ICAK-trained">Yes, ICAK-trained</label>
+              <label class="choice"><input type="radio" name="ak" value="Yes, other AK/muscle-testing training">Yes, other AK or muscle-testing training</label>
+              <label class="choice"><input type="radio" name="ak" value="No">No</label>
+            </div>
+            <span class="err" data-err="ak" aria-live="polite"></span>
+          </fieldset>
+          <label class="lbl"><span>Your #1 frustration with how you chart today <span class="opt">optional</span></span>
+            <textarea class="field" name="frustration" rows="3" placeholder="The thing that makes you want to throw the keyboard…"></textarea>
+          </label>
+          <label class="consent">
+            <input type="checkbox" name="consent">
+            <span>I'd like Triad EHR to contact me about the Founding Cohort. <span class="err" data-err="consent" aria-live="polite" style="display:block;margin-top:4px;"></span></span>
+          </label>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Apply by email<svg class="go" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </form>
+
+        <div id="applySuccess" class="success" role="status">
+          <div class="check" aria-hidden="true"><svg width="28" height="28"><use href="#i-check"/></svg></div>
+          <h3 class="display" style="font-size:32px;margin-bottom:12px;">Almost there!</h3>
+          <p class="muted" style="font-size:17px;max-width:46ch;margin:0 auto;">Your email app should have opened with your application filled in. Hit send and it comes straight to me. I read every one myself. If nothing opened, email <a href="mailto:doc@drtoddanderson.com">doc@drtoddanderson.com</a> directly.</p>
+        </div>
+
+        <div id="waitlist" class="waitlist">
+          <form id="waitForm" novalidate>
+            <div class="wt"><strong>Not ready yet? Join the waitlist.</strong><span>We'll email you when the next seats open.</span></div>
+            <label for="wemail" class="sr-only">Your email</label>
+            <input id="wemail" class="field" name="wemail" type="email" autocomplete="email" placeholder="you@yourpractice.com">
+            <button type="submit" class="btn btn-invert btn-sm">Join by email</button>
+            <span class="err" data-err="wait" aria-live="polite"></span>
+          </form>
+          <p id="waitSuccess" role="status"><strong>Your email app should be open.</strong> Hit send and you're on the list.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section style="background:var(--bg);padding:96px 24px;">
-    <div style="max-width:780px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;">Questions</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;">Straight answers.</h2>
-      <div style="display:flex;flex-direction:column;gap:11px;">
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">Is this only for Applied Kinesiology practices?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">Right now, yes, and on purpose. Triad is built for how AK docs chart, structured findings, valves, challenges, cranial faults, the whole vocabulary no other EHR has. That AK-native depth is the point. The architecture is multi-tenant and adjacent muscle-testing worlds (NRT, NET, ART) are a natural fit later, but AK is where we're starting because it's where nobody else has built.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">What about migrating my data? I can't lose my patient history.<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">We move it for you, free. Concierge migration imports your Jane export or prior-app data, and you keep your full case history. The founder sits in for your first day of live charting. And you own a clean export forever, so leaving is never a trap either. We carry the switching risk, not you.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">How much does it cost?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">Standard pricing is targeted around $129/mo per provider, a single flat price, month-to-month, no per-add-on stacking. That's below ChiroTouch ($159+), Cerbo ($306), and Power2Practice ($199+). Founding Cohort members lock in a lower founding rate for life. Final numbers get set honestly with our first cohort, not guessed at you.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">It's cheaper than what? Jane is only $79.<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">Fair. We don't claim cheapest, we claim right-priced. Jane is cheaper because it does less, you'll still force every muscle test into free-text SOAP and bolt on add-ons that creep the price back up. Against the EHRs AK docs actually overpay for, ChiroTouch, Cerbo, Power2Practice, Triad is a fraction of the cost. And every dollar buys AK-native structure Jane doesn't do.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">Is it actually HIPAA secure?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">We built for it from day one. Triad runs on Google Cloud under a signed BAA. Voice dictation (AssemblyAI) and AI (Claude on Vertex) are both covered under BAA. We sign a Business Associate Agreement with your practice before you go live. We never say "HIPAA certified," because no such certification exists.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">Will learning new software wreck my schedule?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">The single screen is the training. One cockpit, fire a macro, done, your staff picks it up in an afternoon. And the founder builds your most-used patterns into macros live, so you're charting your own workflow from day one, not memorizing somebody else's menus.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">You're a solo founder. Will you actually be around?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">Real question, real answer. Triad is shipped and running a live practice every day on Google Cloud under a BAA, not a prototype betting on your data. A second practice is onboarding now. The Founding Cohort de-risks it structurally: free pilot, founder on weekly calls, clean export anytime, month-to-month. You're not buying from an absent vendor, you're a design partner with the founder on the phone.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px 20px;">
-          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-size:17px;font-weight:600;color:var(--ink);">I already have an EHR. Why switch?<span style="color:var(--accent);font-size:20px;flex-shrink:0;">+</span></summary>
-          <p style="font-size:15.5px;line-height:1.62;color:var(--ink-soft);margin:0 0 18px;">Then you already know the pain: tab-hopping, free-text SOAP, and a bill loaded with billing features you never touch. Triad isn't a better generic EHR. It's the only one built for how an AK doc actually works the table. Watch a real visit charted in about a minute, then decide. If it's not obviously better for how you practice, don't switch.</p>
-        </details>
+  <section id="faq" class="sec" aria-labelledby="faqTitle">
+    <div class="wrap faq-grid">
+      <div class="faq-side reveal">
+        <p class="eyebrow"><span class="n">10</span>Questions</p>
+        <h2 class="display h2" id="faqTitle" style="margin-bottom:16px;">Straight answers.</h2>
+        <p class="muted" style="font-size:16px;">Anything else? Email <a href="mailto:doc@drtoddanderson.com">doc@drtoddanderson.com</a>. Todd reads every one.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- APPLICATION FORM -->
-  <section id="apply" style="background:var(--bg-alt);padding:96px 24px;border-top:1px solid var(--line);">
-    <div style="max-width:760px;margin:0 auto;">
-      <p class="mono" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;">Apply</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,44px);line-height:1.04;margin:0 0 14px;">A few AK practices. The founder on the phone. Open now.</h2>
-      <p style="font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:60ch;margin:0 0 40px;">The Founding Cohort is small on purpose. Five to ten AK practices, free pilot, your data moved for you, the founder building Triad around how you actually work. If you're tired of paying insurance prices to fight a keyboard that's never heard of a muscle test, this is your seat.</p>
-
-      <form id="applyForm" novalidate style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:flex;flex-direction:column;gap:20px;">
-        <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">Full name <span style="color:var(--accent-2);">*</span>
-            <input class="field" name="name" type="text" placeholder="Dr. Jane Smith" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-            <span class="err" data-err="name"></span>
-          </label>
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">Email <span style="color:var(--accent-2);">*</span>
-            <input class="field" name="email" type="email" placeholder="you@yourpractice.com" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-            <span class="err" data-err="email"></span>
-          </label>
-        </div>
-        <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">Practice name <span style="color:var(--accent-2);">*</span>
-            <input class="field" name="practice" type="text" placeholder="Momentum Health &amp; Wellness" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-            <span class="err" data-err="practice"></span>
-          </label>
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">City / State <span style="color:var(--accent-2);">*</span>
-            <input class="field" name="location" type="text" placeholder="Elk River, MN" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-            <span class="err" data-err="location"></span>
-          </label>
-        </div>
-        <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">Mobile phone <span style="color:var(--ink-faint);font-weight:400;">optional</span>
-            <input class="field" name="phone" type="tel" placeholder="(555) 555-5555" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-          </label>
-          <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">Patients per day <span style="color:var(--accent-2);">*</span>
-            <select class="field" name="volume" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;">
-              <option value="">Choose a range…</option><option>Under 10</option><option>10–20</option><option>20–30</option><option>30–40</option><option>40+</option>
-            </select>
-            <span class="err" data-err="volume"></span>
-          </label>
-        </div>
-        <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">What EHR are you on now? <span style="color:var(--accent-2);">*</span>
-          <select class="field" name="ehr" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;">
-            <option value="">Choose one…</option><option>ChiroTouch</option><option>Jane</option><option>ChiroFusion</option><option>Cerbo</option><option>Power2Practice</option><option>Paper</option><option>Other</option><option>None</option>
-          </select>
-          <span class="err" data-err="ehr"></span>
-        </label>
-        <fieldset style="border:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-          <legend style="font-size:13.5px;font-weight:600;color:var(--ink);padding:0;margin-bottom:2px;">Are you a cash-only practice? <span style="color:var(--accent-2);">*</span></legend>
-          <div style="display:flex;flex-wrap:wrap;gap:9px;">
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="cash" value="Yes, 100% cash" />Yes, 100% cash</label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="cash" value="Mostly cash" />Mostly cash, some insurance</label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="cash" value="No, primarily insurance" />No, primarily insurance</label>
-          </div>
-          <span class="err" data-err="cash"></span>
-        </fieldset>
-        <fieldset style="border:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-          <legend style="font-size:13.5px;font-weight:600;color:var(--ink);padding:0;margin-bottom:2px;">Do you practice Applied Kinesiology? <span style="color:var(--accent-2);">*</span></legend>
-          <div style="display:flex;flex-wrap:wrap;gap:9px;">
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="ak" value="Yes, ICAK-trained" />Yes, ICAK-trained</label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="ak" value="Yes, other AK training" />Yes, other AK/muscle-testing</label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="ak" value="Adjacent (NRT/NET/ART)" />Adjacent (NRT/NET/ART)</label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;"><input type="radio" name="ak" value="No" />No</label>
-          </div>
-          <span class="err" data-err="ak"></span>
-        </fieldset>
-        <label style="display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink);">What's your #1 frustration with how you chart today? <span style="color:var(--ink-faint);font-weight:400;">optional, but it helps us tailor your demo</span>
-          <textarea class="field" name="frustration" rows="3" placeholder="The thing that makes you want to throw the keyboard…" style="font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;resize:vertical;font-family:inherit;"></textarea>
-        </label>
-        <label style="display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--ink-soft);line-height:1.5;cursor:pointer;">
-          <input type="checkbox" name="consent" style="margin-top:3px;width:17px;height:17px;flex-shrink:0;" />
-          <span>I'd like Triad to contact me about the Founding Cohort. <span class="err" data-err="consent" style="display:block;margin-top:3px;"></span></span>
-        </label>
-        <button type="submit" style="font-weight:700;font-size:16px;background:var(--accent);color:var(--accent-ink);border:none;padding:16px;border-radius:12px;cursor:pointer;margin-top:4px;">Apply for the Founding Cohort</button>
-      </form>
-
-      <div id="applySuccess" style="display:none;background:var(--surface);border:1px solid var(--accent);border-radius:18px;padding:48px 36px;text-align:center;animation:triadFade .5s ease;">
-        <div style="width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;margin:0 auto 22px;font-size:28px;font-weight:700;">✓</div>
-        <h3 class="display" style="font-size:26px;margin:0 0 12px;color:var(--ink);">Got it!</h3>
-        <p style="font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:42ch;margin:0 auto;">Todd will personally reach out within two business days. Talk soon.</p>
-      </div>
-
-      <!-- WAITLIST -->
-      <div id="waitlist" style="margin-top:18px;background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:22px 24px;">
-        <form id="waitForm" novalidate style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
-          <div style="flex:1;min-width:220px;">
-            <p style="font-size:15px;font-weight:600;color:var(--ink);margin:0 0 3px;">Not ready yet? Join the waitlist.</p>
-            <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">We'll send the 60-second-visit demo the moment it's ready.</p>
-          </div>
-          <input class="field" name="wemail" type="email" placeholder="you@yourpractice.com" style="flex:1;min-width:200px;font-size:15px;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none;" />
-          <button type="submit" style="font-weight:600;font-size:15px;background:transparent;color:var(--accent);border:1px solid var(--accent);padding:12px 20px;border-radius:10px;cursor:pointer;white-space:nowrap;">Join the waitlist</button>
-          <span class="err" data-err="wait" style="width:100%;"></span>
-        </form>
-        <p id="waitSuccess" style="display:none;font-size:15px;color:var(--ink);margin:0;animation:triadFade .4s ease;"><span style="color:var(--accent);font-weight:700;">✓ You're on the list.</span> We'll send the 60-second-visit demo the moment it's ready.</p>
+      <div class="faq reveal d1">
+        <details>
+          <summary>Is this only for Applied Kinesiology practices?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>No. Triad is for cash-based functional and integrative practices: functional medicine, chiropractic, naturopathic and AK. Functional-range labs, supplement plans to checkout, dictation and the progress picture work the same for everyone. And if you practice AK, you also get structured findings for valves, challenges, cranial faults and offenders, which is where Triad started.</p>
+        </details>
+        <details>
+          <summary>What about my data? I can't lose my patient history.<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>We move it for you, free. Triad imports patients, appointments and chart-note files from your current EHR's export, and anything it can't match to exactly one patient is listed for review instead of guessed. Leaving is never a trap: Settings has a full export of every chart, note and document.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>Founding target pricing is $79 per provider per month (Foundation) or $129 with voice dictation and AI drafts (Professional). Month-to-month, no add-on stacking. Founding practices lock in a lower rate for life, and final numbers get set honestly with our first practices.</p>
+        </details>
+        <details>
+          <summary>I'm on a low-cost EHR already. Why pay more?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>Fair question. On low-cost generalist software you're not overpaying, you're under-served: lab patterns, protocols and muscle tests still go into a free-text box, and add-ons creep the price back up. Triad's price buys structured charting (AK included), the progress picture and functional-range labs. If it isn't obviously better for how you practice, don't switch.</p>
+        </details>
+        <details>
+          <summary>Is it actually HIPAA secure?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>We built for it from day one. Triad runs on Google Cloud under a signed BAA, and dictation (AssemblyAI) and patient email (Amazon SES) are each under their own. Triad EHR LLC signs a BAA with your practice before your data comes in. We never say "HIPAA certified," because no such certification exists.</p>
+        </details>
+        <details>
+          <summary>Can I order labs from Triad?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>Today Triad tracks the labs you order, schedules rechecks, and imports results from PDF (tuned for LabCorp reports and DUTCH hormone reports). Direct electronic lab ordering, with results flowing straight into the chart, is in development.</p>
+        </details>
+        <details>
+          <summary>Will learning new software wreck my schedule?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>The single screen is the training. Your most-used patterns get built into macros during setup, a checklist walks your staff through the rest, and Help has a "What's new" list so no update is a surprise.</p>
+        </details>
+        <details>
+          <summary>You're a small company. Will you actually be around?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+          <p>Real question, real answer. Triad isn't a prototype betting on your data. It runs a live practice every day, owned by Triad EHR LLC, a Minnesota company. The Founding Cohort de-risks it anyway: free first weeks, month-to-month, and a full export you can take anytime.</p>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
-  <section style="background:var(--hero-bg);color:var(--hero-ink);padding:90px 24px;text-align:center;">
-    <div style="max-width:680px;margin:0 auto;">
-      <h2 class="display" style="font-size:clamp(28px,4.2vw,46px);line-height:1.04;margin:0 0 20px;">I built this for docs like us. Let me show you.</h2>
-      <p style="font-size:18px;line-height:1.6;color:var(--hero-soft);margin:0 0 32px;">If you're tired of paying insurance prices to fight a keyboard that's never heard of a muscle test, this is your seat.</p>
-      <a href="#apply" style="display:inline-block;font-weight:700;font-size:17px;text-decoration:none;background:var(--accent);color:var(--accent-ink);padding:16px 30px;border-radius:12px;box-shadow:0 14px 34px -12px color-mix(in srgb,var(--accent) 60%, transparent);">Apply for the Founding Cohort</a>
-      <p class="display" style="font-size:18px;margin:26px 0 0;color:var(--hero-ink);">— Todd</p>
+  <section id="contact" class="sec final" aria-labelledby="finalTitle">
+    <div class="wrap" style="max-width:860px;">
+      <img src="assets/logo.svg" alt="" width="56" height="56" loading="lazy" style="margin:0 auto 28px;border-radius:14px;box-shadow:0 20px 40px -12px rgba(0,0,0,.6);">
+      <h2 class="display h2" id="finalTitle" style="margin-bottom:20px;">Chart the way you practice.</h2>
+      <p class="lede">Apply above, or just email me. I read every one myself, and a recorded walkthrough on a synthetic patient is yours on request.</p>
+      <div class="cta-row">
+        <a href="#apply" class="btn btn-primary">Apply for the Founding Cohort<svg class="go" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="mailto:doc@drtoddanderson.com?subject=Triad%20EHR" class="btn btn-ghost">doc@drtoddanderson.com</a>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer style="background:var(--bg);color:var(--ink-soft);padding:44px 24px;border-top:1px solid var(--line);">
-    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start;">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <span style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid var(--accent);display:inline-block;"></span>
-        <span class="display" style="font-size:17px;color:var(--ink);">Triad EHR</span>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a href="#top" class="brand" aria-label="Triad EHR, back to top">
+            <img src="assets/logo.svg" alt="" width="30" height="30" loading="lazy">
+            <span>Triad EHR</span>
+          </a>
+          <p class="muted" style="font-size:14.5px;margin-top:8px;max-width:40ch;">The EHR for cash-based functional and integrative practices, Applied Kinesiology included.</p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer">
+          <a href="#tour">Tour</a><a href="#unique">Product</a><a href="#pricing">Pricing</a><a href="#security">Security</a><a href="#faq">FAQ</a><a href="#apply">Apply</a>
+        </nav>
       </div>
-      <p class="mono" style="font-size:12.5px;line-height:1.7;color:var(--ink-faint);max-width:70ch;margin:0;">
-        Triad EHR · c/o Momentum Health &amp; Wellness, Elk River, MN 55330 · <a href="#waitlist" style="color:var(--ink-soft);">Unsubscribe / contact preferences</a><br/>
-        We sign a BAA and build on HIPAA-eligible infrastructure under a signed BAA. We are not "HIPAA certified" (no such certification exists) and hold no FDA or ONC clearance. Triad organizes and displays clinician-entered data; it does not diagnose, treat, or interpret results. Pricing (~$129/mo target) and the under-a-minute charting claim are working targets being validated with our founding cohort. © 2026 Triad EHR.
-      </p>
+      <div class="foot-meta">
+        <span>© 2026 Triad EHR LLC</span><span>Elk River, Minnesota</span><a href="mailto:doc@drtoddanderson.com">doc@drtoddanderson.com</a>
+      </div>
+      <p class="fine" style="margin-top:16px;max-width:96ch;">Triad runs on HIPAA-eligible infrastructure under signed BAAs (Google Cloud, AssemblyAI, Amazon SES), and Triad EHR LLC signs a BAA with each practice. We are not "HIPAA certified" (no such certification exists) and hold no SOC 2, HITRUST, FDA or ONC certification or clearance. Triad organizes and displays clinician-entered data; it does not diagnose, treat, or interpret results. Prices shown are founding targets being validated with our founding practices. In daily clinical use at Momentum Health &amp; Wellness, Elk River, MN. All screens and video show demo data. This site uses no analytics or tracking cookies.</p>
     </div>
   </footer>
 
 <script>
 (function(){
   "use strict";
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Header: translucent blur once scrolled
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+    if (window.scrollY < 300){ var cur = document.querySelectorAll('.nav a[aria-current]'); for (var q=0;q<cur.length;q++) cur[q].removeAttribute('aria-current'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Dictation waveform bars
+  var bars = document.getElementById('bars');
+  if (bars){
+    var hs = [30,55,80,45,95,60,35,70,100,50,40,85,65,30,75,90,45,60,35,80,55,95,40,70,50,30,65,85,45,60];
+    for (var b=0;b<hs.length;b++){ var i=document.createElement('i'); i.style.height=hs[b]+'%'; i.style.animationDelay=(b*0.07%1.4).toFixed(2)+'s'; bars.appendChild(i); }
+  }
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    for (var r=0;r<reveals.length;r++) reveals[r].classList.add('in');
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.01 });
+    for (var k=0;k<reveals.length;k++) io.observe(reveals[k]);
+  }
+
+  // Active nav link
+  var navLinks = document.querySelectorAll('.nav a');
+  if ('IntersectionObserver' in window && navLinks.length){
+    var map = {};
+    for (var n=0;n<navLinks.length;n++){ map[navLinks[n].getAttribute('href').slice(1)] = navLinks[n]; }
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var a = map[en.target.id]; if (!a) return;
+        if (en.isIntersecting){ for (var x=0;x<navLinks.length;x++) navLinks[x].removeAttribute('aria-current'); a.setAttribute('aria-current','true'); }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function(id){ var el=document.getElementById(id); if (el) nio.observe(el); });
+  }
+
+  // Tour video: vertical poster on phones, Watch button, chapters
+  var video = document.getElementById('tourVideo');
+  var watch = document.getElementById('watchTour');
+  var chapterBtns = document.querySelectorAll('.chapters button');
+  if (video && window.matchMedia('(max-width: 640px)').matches){ video.setAttribute('poster','assets/site/poster-vertical.jpg'); }
+  function playFrom(t){
+    function seek(){ try { if (typeof t === 'number' && !isNaN(t)) video.currentTime = t; } catch(e){} }
+    if (video.readyState >= 1) seek();
+    else video.addEventListener('loadedmetadata', seek, { once: true });
+    var p = video.play(); if (p && p.catch) p.catch(function(){});
+  }
+  if (video && watch){
+    watch.addEventListener('click', function(e){
+      e.preventDefault();
+      video.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      playFrom(0);
+      video.focus({ preventScroll: true });
+    });
+  }
+  for (var c=0;c<chapterBtns.length;c++){
+    chapterBtns[c].addEventListener('click', function(){ playFrom(parseFloat(this.getAttribute('data-t'))); });
+  }
+  if (video){
+    video.addEventListener('timeupdate', function(){
+      var cur = null;
+      for (var i=0;i<chapterBtns.length;i++){ if (video.currentTime >= parseFloat(chapterBtns[i].getAttribute('data-t'))) cur = chapterBtns[i]; }
+      for (var j=0;j<chapterBtns.length;j++){ chapterBtns[j].setAttribute('aria-current', chapterBtns[j] === cur && !video.paused ? 'true' : 'false'); }
+    });
+  }
+
+  // Gallery arrows (shown only when the track overflows)
+  var controls = document.querySelectorAll('.gal-ctrl');
+  function syncControls(ctrl){
+    var track = document.getElementById(ctrl.getAttribute('data-for'));
+    if (!track) return;
+    ctrl.hidden = !(track.scrollWidth - track.clientWidth > 4);
+    var btns = ctrl.querySelectorAll('.arrow');
+    btns[0].disabled = track.scrollLeft <= 2;
+    btns[1].disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+  }
+  for (var g=0; g<controls.length; g++){
+    (function(ctrl){
+      var track = document.getElementById(ctrl.getAttribute('data-for'));
+      var btns = ctrl.querySelectorAll('.arrow');
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener('click', function(){
+          var item = track.querySelector('li');
+          var step = item ? item.getBoundingClientRect().width + 20 : track.clientWidth * 0.8;
+          track.scrollBy({ left: step * parseInt(this.getAttribute('data-dir'),10), behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      }
+      track.addEventListener('scroll', function(){ syncControls(ctrl); }, { passive: true });
+      window.addEventListener('resize', function(){ syncControls(ctrl); });
+      window.addEventListener('load', function(){ syncControls(ctrl); });
+      syncControls(ctrl);
+    })(controls[g]);
+  }
+
+  // Forms: validate, then open a prefilled email (no backend, nothing stored)
   var FOUNDER_EMAIL = "doc@drtoddanderson.com";
-  function validEmail(v){ return /.+@.+\..+/.test(v); }
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function clearErrors(scope){ var nodes = scope.querySelectorAll('.err'); for (var i=0;i<nodes.length;i++){ nodes[i].textContent=''; } }
+  function setError(scope, field, msg){ var el = scope.querySelector('[data-err="'+field+'"]'); if (el) el.textContent = msg; }
 
-  // ---------- Application form ----------
   var form = document.getElementById('applyForm');
   var success = document.getElementById('applySuccess');
-
-  function clearErrors(scope){
-    var nodes = scope.querySelectorAll('.err');
-    for (var i=0;i<nodes.length;i++){ nodes[i].textContent=''; }
-  }
-  function setError(scope, field, msg){
-    var el = scope.querySelector('[data-err="'+field+'"]');
-    if (el) el.textContent = msg;
-  }
-
   form.addEventListener('submit', function(e){
     e.preventDefault();
     clearErrors(form);
-
     var fd = new FormData(form);
-    var g = function(k){ return (fd.get(k) || '').toString().trim(); };
+    var gv = function(key){ return (fd.get(key) || '').toString().trim(); };
     var errors = {};
-
-    if (!g('name')) errors.name = 'Please add your name.';
-    var em = g('email');
+    if (!gv('name')) errors.name = 'Please add your name.';
+    var em = gv('email');
     if (!em) errors.email = 'Email is required.';
     else if (!validEmail(em)) errors.email = 'That email looks off.';
-    if (!g('practice')) errors.practice = 'Practice name is required.';
-    if (!g('location')) errors.location = 'City / State is required.';
-    if (!g('cash')) errors.cash = 'Pick one.';
-    if (!g('ak')) errors.ak = 'Pick one.';
-    if (!g('volume')) errors.volume = 'Choose a range.';
-    if (!g('ehr')) errors.ehr = 'Choose one.';
+    if (!gv('practice')) errors.practice = 'Practice name is required.';
+    if (!gv('location')) errors.location = 'City / State is required.';
+    if (!gv('ehr')) errors.ehr = 'Tell us what you use now (paper counts).';
+    if (!gv('volume')) errors.volume = 'Choose a range.';
+    if (!gv('cash')) errors.cash = 'Pick one.';
+    if (!gv('ptype')) errors.ptype = 'Pick one.';
+    if (!gv('ak')) errors.ak = 'Pick one.';
     if (!fd.get('consent')) errors.consent = 'Please check the box so we can reach out.';
-
     var keys = Object.keys(errors);
     if (keys.length){
       for (var i=0;i<keys.length;i++){ setError(form, keys[i], errors[keys[i]]); }
@@ -659,56 +1291,34 @@
       if (firstField && firstField.focus) firstField.focus();
       return;
     }
-
-    // Valid: open a prefilled mailto so the lead reaches the founder (static hosting, no backend).
     var lines = [
-      'New Founding Cohort application',
-      '',
-      'Full name: ' + g('name'),
-      'Email: ' + g('email'),
-      'Practice name: ' + g('practice'),
-      'City / State: ' + g('location'),
-      'Mobile phone: ' + (g('phone') || '(not provided)'),
-      'Patients per day: ' + g('volume'),
-      'Current EHR: ' + g('ehr'),
-      'Cash-only practice: ' + g('cash'),
-      'Practices AK: ' + g('ak'),
-      '#1 charting frustration: ' + (g('frustration') || '(not provided)'),
+      'Founding Cohort application', '',
+      'Full name: ' + gv('name'),
+      'Email: ' + gv('email'),
+      'Practice name: ' + gv('practice'),
+      'City / State: ' + gv('location'),
+      'Current EHR: ' + gv('ehr'),
+      'Patients per day: ' + gv('volume'),
+      'Cash-based practice: ' + gv('cash'),
+      'Practice type: ' + gv('ptype') + (gv('ptypeOther') ? ' (' + gv('ptypeOther') + ')' : ''),
+      'Uses AK / muscle testing: ' + gv('ak'),
+      '#1 charting frustration: ' + (gv('frustration') || '(not provided)'),
       'Consent to contact: Yes'
     ];
-    var href = 'mailto:' + FOUNDER_EMAIL +
-      '?subject=' + encodeURIComponent('Founding Cohort application') +
-      '&body=' + encodeURIComponent(lines.join('\n'));
-
-    // Trigger the user's mail client.
-    window.location.href = href;
-
-    // Swap to the success card regardless (mail client opens in a separate window).
+    window.location.href = 'mailto:' + FOUNDER_EMAIL + '?subject=' + encodeURIComponent('Founding Cohort application') + '&body=' + encodeURIComponent(lines.join('\n'));
     form.style.display = 'none';
     success.style.display = 'block';
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    success.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
   });
 
-  // ---------- Waitlist ----------
   var waitForm = document.getElementById('waitForm');
   var waitSuccess = document.getElementById('waitSuccess');
-
   waitForm.addEventListener('submit', function(e){
     e.preventDefault();
     clearErrors(waitForm);
-
-    var fd = new FormData(waitForm);
-    var em = (fd.get('wemail') || '').toString().trim();
-    if (!validEmail(em)){
-      setError(waitForm, 'wait', 'Add a valid email.');
-      return;
-    }
-
-    var href = 'mailto:' + FOUNDER_EMAIL +
-      '?subject=' + encodeURIComponent('Triad waitlist') +
-      '&body=' + encodeURIComponent('Please add this email to the Triad waitlist:\n\n' + em);
-    window.location.href = href;
-
+    var em = (new FormData(waitForm).get('wemail') || '').toString().trim();
+    if (!validEmail(em)){ setError(waitForm, 'wait', 'Add a valid email.'); return; }
+    window.location.href = 'mailto:' + FOUNDER_EMAIL + '?subject=' + encodeURIComponent('Triad waitlist') + '&body=' + encodeURIComponent('Please add this email to the Triad EHR waitlist:\n\n' + em);
     waitForm.style.display = 'none';
     waitSuccess.style.display = 'block';
   });
